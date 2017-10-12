@@ -1,7 +1,9 @@
-Javascript
+# Javascript
+
+
 https://www.grafikart.fr/formations/debuter-javascript/variables
 
-Note à partir de Grafikart
+## Note prise à partir des tutos vidéos grafikart
 
 Une variable sert à stocké provisoirement des données
 On peut décider du nom que l'on donne à la variable, en respectant ceci:
@@ -12,7 +14,8 @@ le nom de la variable:
 * peut être composé ensuite de lettre et de chiffre et underscore
 * aucun autre caractère spécial ne peut être utilisé pour nommer les variable
 
-exemple: 
+exemple:
+ 
 * var chat
 * var demo
 * var c85Jv

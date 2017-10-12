@@ -184,14 +184,42 @@ etudiant.moyenne
 15
 ```
 
+On peut également mais c'est plus rare, récupérer les données comme pour un tableau mais en mentionnant la clef qui lui est associé au lieu du numéro d'index. Mais on préférera tant que possible utiliser la syntaxe de type etudiant.age
+
+```javascript
+etudiant["age"]
+12
+```
+
+Si on veut ajouter une nouvelle valeur à l'objet, on utilise la syntaxe nomDeObjet.clef=valeur
+
+```javascript
+etudiant.taille=140
+140
+etudiant.taille
+140
+
+etudiant
+{nom: "Marc", age: 12, moyenne: 15, taille: 140}
+```
+
+On constate alors que la valeur taille à bien été ajouter à l'objet en tapant uniquement le nom de l'objet.s
 
 
+En javascript, tout est objets. Les tableau , les chaines de caractères et même les entier sont des objets. Ils ont donc tous des propriétés comme mon objet etudiant. (par exemple le nombre de caractère ou d'élément qui le compose avec la propriété length (récupère la taille d'un tableau ou le nombre de lettres composant une chaine de caractère).
 
+```javascript
+var eleves = ["Jean", "John", "Marion"]
+undefined
+eleves.length
+3
+"Marion".length
+6
+```
 
+Les variables sont les fondations de nos algorthymes.
 
-
-
-
+Dans le chapitre suivant on verra ce que sont les conditions ou comment tester si une valeur est bien celle attendue.
 
 
 

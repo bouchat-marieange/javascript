@@ -1,5 +1,7 @@
 // Exercice Variables
 
+
+
 // Exercice 1 : Diseur de bonne aventure
 
 var nomFemme;
@@ -54,3 +56,29 @@ console.log ("Il vous reste " + combienDenreeJusqueFinVie + " de " + denree + " 
 Il vous reste 40880 de Cannettes de Coca Zero avant d'atteindre l'age de 100 ans
 
 // Exercice 4 - Priorité
+
+var etape1 = 1 + 2;
+undefined
+etape1
+3
+
+var etape2 = etape1 *3;
+undefined
+etape2
+9
+
+var etape3 = 4 / 2;
+undefined
+etape3
+2
+
+var etape4 = etape2 + etape3;
+undefined
+etape4
+11
+
+// On compare avec le résultat obtenu en une étape, c'est ok !
+var result = (1 + 2) * 3 + 4 / 2;
+undefined
+result
+11

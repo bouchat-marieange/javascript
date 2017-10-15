@@ -1,0 +1,64 @@
+Notes au vol veille fonctionnalités Javascript Alexandre
+
+ <script>
+    // J'affiche un texte dans une fenêtre pop-up
+    alert("Bienvenue sur la page d'exerices javascript des variables");
+
+    // J'affiche du texte uniquement dans la console de l'inspecteur du navigateur - onglet console et pas dans la page weg
+    console.log("Je m'affiche uniquement dans la console - ideal pour débugger le script sans passer par l'affichage sur la page web");
+
+    // J'affiche dans la console le texte stocké dans la varible
+    var convocation = "coucou!";
+    console.log(convocation)
+
+    // Attention mettre un simple = au lieu de == attribue une nouvelle valeur à la variable
+    var convocation = "cou cou!";
+    if (convocation == "coucou")
+    {
+      console.log("Ta maman te dit : "+ convocation);
+    }
+    else {
+      console.log("Ta maman te dit: c'est à cette heure-ci que tu rentre");
+    }
+    // Un bon code doit être comprehensible à la lecture soit en camel case soit separé mots par underscore
+    // Une fois choisit camel case ou underscore ce tenir à cette synthaxe  tout au long du projet.
+    // var ceux_qui_ont _deja_passe_le_badge = ""
+    // var ceuxQuiOntDejaPasseLeBadge = ""
+
+    // Tableaux
+    var ceux_qui_ont _deja_passe_le_badge = Array ("Steve", "Thomas", "Sly", "Kevin", "Valerian");
+    console.log(ceux_qui_ont _deja_passe_le_badge);
+
+    // Changer nom du tableau trop long
+    var yo = ceux_qui_ont _deja_passe_le_badge;
+
+    yo[0]
+    yo.lastindex
+
+    // Cette boucle va afficher dans une fenetre pop up à chaque rafraichissement de la page " Bonjour + premier nom du tableau", puis "Bonjour+ second nom du tableau"
+    for (var index = 0; index < yo.lenght ; index ++)
+    // for ( definiti variable utilisée uniquement dans la boucle; condition jusque quand s'exécute la boucle - attention éviter boucle infinie)
+    {
+      // code à éxécuter x nombre de fois (dépend de ...- ici tant que la valeur de l'index est inférieur à la longeur du tableau)
+      alert("Bonjour" + yo [index]);
+    }
+
+    for (var index = 0; index < yo.lenght ; index ++)
+    // for ( definiti variable utilisée uniquement dans la boucle; condition jusque quand s'exécute la boucle - attention éviter boucle infinie)
+    {
+      // code à éxécuter x nombre de fois (dépend de ...- ici tant que la valeur de l'index est inférieur à la longeur du tableau)
+      console.log("index de "" + yo[index] + " = " + index);
+    }
+
+    Grace au javascript on peut modifier directement html
+    document.getEmementByID('js-yo').value;
+    
+    // Function de "callbak", a exécuter lorsque l'évènement "change " de l'input est détecté
+    message = this.value;
+    if (message.lenght <2)
+    {
+      document.get ElementByID ('js-yo).')
+    }
+
+
+  </script>

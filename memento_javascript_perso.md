@@ -170,6 +170,8 @@ while (increment <10) {
 ```
 À la fin de la boucle le code continue son exécution à partir de l'accolade fermante ("}") de la fin du bloc.
 
+### for
+
 ```javascript
 for (var i = 0; i <10; i++) {
     console.log(i);

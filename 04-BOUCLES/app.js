@@ -15,7 +15,7 @@ for (var i = 0; i <= 20; i++)
     }
 }
 
-// Autre variante - Ce code fonctionne mais je ne comprends pas i&1 à quoi cela correspond. A approfondir!!!
+// Autre variante - Ce code fonctionne mais i&1 correspond à un raisonnement binaire plus complexe qu'un modulo.
 for (var i = 0; i <= 20; i++)
 {
   if (i & 1)
@@ -63,6 +63,7 @@ for (var i = 0; i <= 20; i++)
 //   console.log (i + " * 9 = " + (i * 9));
 // }
 
+
 // Assigner des grades
 
 for (var i = 0; i <= 100; i++)
@@ -92,57 +93,19 @@ for (var i = 0; i <= 100; i++)
 
 // Pyramide
 
-for (var i = 1; i < 6; i++)
-{
-  // Calcul du nombre d'étoile à écrire sur chaque ligne
-  nb_etoiles = i + 1;
+var etoile = "*";
 
-  // Ecrire les étoiles sur la ligne courante
-  for (var x = nb_etoiles; i < 6; i++)
-  {
-    console.log (i * "*");
-  }
-}
+for (i=0; i<5; i++){
+  console.log(etoile);
+  etoile = etoile + "*";
+};
 
+// symbole +="*" est une manière abrégée d'écrire etoile = etoile + "*", soit ajoute une étoile à chaque tour de boucle
+// Ne pas indiquer de br après étoile dans console.log car la console effectue automatiquement le retour à la ligne à chaque boucle et affichera la balise <br/>
+//Pour un affichage sur la page web, il sera nécessaire d'ajouter un br après l'affichage de la variable étoile pour effectuer un retour à la ligne.
+var etoile = "*";
 
-
-var txt = "";
-for (i=0;i<6;i++) {
-    console.log(txt);
-    document.write(txt+"<br/>");
-    txt = txt+"* ";
-}
-
-var txt = "";
-for (i=0;i<6;i++)
-{
-    console.log(txt+<br/>);
-    txt = txt + "*";
-}
-
-
-
-console.log(i)
-// for (var i = 0 ; i < 5; i++)
-// {
-//   console.log (afficher_etoiles(i,"*"));
-// }
-//
-// var etoile = "*";
-// function afficher_etoiles(j, etoile){
-//   for
-// }
-//
-//
-//
-// for (var i = 0; i < 5; i++)
-// {
-//   console.log( afficher(i, etoile));
-// }
-//
-//
-// var etoile = "	&#149;";
-// var afficher = function (i,etoile);
-
-
-// fonction dans une fonction. fonction 1 récupére l'incrément de 1, fonction 2 récupère l'incrément à chaque tour et s'en sert pour indiquer le nombre de fois où le caractère étoile doit être afficher
+for (i=0; i<5; i++){
+  document.write(etoile + "<br/>");
+  etoile = etoile + "*";
+};

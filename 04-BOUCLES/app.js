@@ -66,6 +66,8 @@ for (var i = 0; i <= 20; i++)
 
 // Assigner des grades
 
+//Si on suit l'instruction faire une boucle (voici la solution qui affiche tout les résultats possibles l'un à la suite de l'autre
+
 for (var i = 0; i <= 100; i++)
 {
   if (i > 90)
@@ -89,6 +91,75 @@ for (var i = 0; i <= 100; i++)
         console.log ("Pour " + i + " points, vous avez le grade F");
     }
 }
+
+// Si prend le parti de faire une uniquement la fonction
+
+function afficher_grade (i);
+
+if (i > 90)
+{
+console.log ("Pour " + i + " points, vous avez le grade A");
+}
+else if (i > 80 && i<= 90)
+{
+console.log ("Pour " + i + " points, vous avez le grade B");
+}
+else if (i > 70 && i<= 80 )
+{
+console.log ("Pour " + i + " points, vous avez le grade C");
+}
+else if (i > 65 && i<= 70)
+{
+console.log ("Pour " + i + " points, vous avez le grade D");
+}
+else
+{
+console.log ("Pour " + i + " points, vous avez le grade F");
+}
+
+afficher_grade(80);
+
+// Si on fait la boucle dans la fonction
+
+function maFonction(grade);
+{
+
+	for (var i = 0; i <= 100; i++) 
+		{
+		    if (grade >= 90)
+			{
+		    		console.log("pour " + grade + " points, vous avez le grade A");
+		    	}
+
+		    else if (grade < 90 && grade>= 80)
+			{
+		    		console.log("pour " + grade + " points, vous avez le grade B");
+		    	}
+
+		    else if (grade  < 80 && grade >= 70)
+			{
+				console.log("pour " + grade + " points, vous avez le grade C");
+		    	}
+
+		    else if (grade  < 70 && grade >= 65)
+			{
+				console.log("pour " + grade + " points, vous avez le grade D");
+		    	}
+
+		    else
+			{
+				console.log("pour " + grade + " points, vous avez le grade F");
+		    	}
+		}
+}
+
+//On stocke une varible nombre que l'on récupère auprès de l'utilisateur avec une fenêtre prompt (fenêtre avec un champ permettant à l'utilisateur d'entrer des données"
+var nb = prompt("entrez un nombre");
+
+// On appelle la fonction en lui donnant la valeur récupérer auprès de l'utilisateur dans la fenêtre prompt
+maFonction(nb);
+
+
 
 
 // Pyramide

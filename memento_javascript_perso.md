@@ -181,5 +181,78 @@ for (var i = 0; i <10; i++) {
 Cela nous retourne dans la console les numéros de 1 à 10 dans l'ordre. Par ailleurs, i++ est équivalent à i = i + 1.
 
 
+## Tableaux
+
+### Création d'un tableau
+
+```javascript
+let emptyArray = []; // anciennement : new Array()
+let shoppingList = ["lait", "pain", "haricots"];
+```
+
+Les tableaux sont des listes de tout type de données, y compris d'autres tableaux. Chaque élément du tableau a un indice. Ce nombre permet de récupérer un élément du tableau. Les indices commencent à 0. Le premier élément d’un tableau a l'indice 0.
+
+### Récupérez un élément spécifique d'un tableau
+
+```javascript
+ShoppingList[0];
+­> lait
+```
+
+### Modifiez un élément spécifique d'un tableau
+
+```javascript
+shoppingList[1] = "cookies";
+// ShoppingList est maintenant ['lait', 'cookies', 'haricots']
+```
+
+### Trouver nombre d'élément dans un tableau avec length
+
+```javascript
+shoppingList.length;
+­> 3
+```
+
+### Ajouter ou supprimer des éléments à la fin du tableau avec push et pop
+
+```javascript
+shoppingList.push('new car');
+// shoppingList est maintenant ['Milk', 'pain', 'haricots', 'new car']
+shoppingList.pop();
+// shoppingList est de retour à ['Milk', 'pain', 'haricots']
+```
+
+### Exemple complexe avec tableaux et fonction et ajout de données avec push
+
+Dans l'exemple ci-dessous:
+
+* On créer une fonction appellée helloFrom qui affiche "Bonjour de + nom de chacune des personnes stockées dans le tableau (boucle - itération)
+
+* Le tableau s'appelle let people et contient les élement Tom, Yoda, Ron avec respectivement les index 0, 1, 2
+
+* On ajoute deux nouvelles personnes aux tableaux avec nom_tableau.push : Bob et Dr Mal
+
+* On effectue une boucle for sur tous les éléments du tableau. La boucle commence à 0 (i =0), incrément sera inférieur à la longueur du tableau calculée avec lenght (puisqu'il commence à 0) et on incrémente de 1 à chaque fois (i++).
+
+* A chaque tour de boucle, on stocke dans un let (très proche d'une variable) appelé greeting le fait que l'on applique systematiquement la fonction helloFrom définie plus haut à chaque nom de personne contenue dans le tableau people. Pour cibler à chaque fois la personne suivante, on indique [i] après le nom du tableau qui permet de récupérer le contenu de la cellule dont l'index sera incrémenté à chaque tour en commençant par 0. Exemple: people[0] -> Tom - people [1] -> Yoda, etc...
+
+* Le nombre de tour de boucle sera automatiquement adapté grâce à l'usage de length les paramètre de la boucle, même si d'autres noms ont été ajoutés avec push.
+
+* On affiche ensuite dans la console le résulat retourné par le let (variable) greeting c'est à dire "Bonjour de Tom" "Bonjour de Yoda" etc...
+
+
+```javascript
+let helloFrom = function (personName) {
+    return "Bonjour de " + personName;
+}
+let people = ["Tom", "Yoda", "Ron"];
+people.push("Bob", "Dr Mal");
+for (let i = 0; i < people.Length; i++) {
+    let greeting = helloFrom(people[i]);
+    console.log(greeting);
+}
+```
+
+
 
 

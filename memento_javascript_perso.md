@@ -317,7 +317,7 @@ window:window.confirm("texte");
 Syntax
 
 ```javascript
-windows.alert();
+windows.confirm();
 ```
 ou 
 

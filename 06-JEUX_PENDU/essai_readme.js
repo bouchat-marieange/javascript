@@ -6,10 +6,12 @@ windows.prompt();
 // exemple:
 // var person = prompt ("Please enter your name", "Harry Potter");
 //
-// Syntax: prompt(text, defaultText)
+// Syntax:
+
+// prompt(text, defaultText);
 //
 // Dans la syntax: text est le texte qui s'affichera pour demander à l'utilisateur le type de texte à entrer (ex: nom, age, lettre, ...)
-// // le second paramètre defaultText est optionnel et permet d'afficher un exemple du type de données attendue dans le champ où l'utilisateur doit encoder des données
+// le second paramètre defaultText est optionnel et permet d'afficher un exemple du type de données attendue dans le champ où l'utilisateur doit encoder des données
 
 windows.alert();
 

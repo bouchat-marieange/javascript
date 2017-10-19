@@ -392,14 +392,16 @@ function getRndInteger(min, max)
 {
      return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
+```
 
-// avec les valeurs 50 et 100
+Avec les valeurs 50 et 100
 
+```javascript
 function getRndInteger(50, 100) 
 {
      return Math.floor(Math.random() * (100 - 50 + 1) ) + 50;
 }
-
+```
 
 ### Choisir une valeur aléatoirement dans un tableau
 

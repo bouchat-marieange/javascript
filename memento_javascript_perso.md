@@ -420,5 +420,276 @@ Un entier obtenu à partir de l'analyse de la chaîne de caractères. Si le prem
 
 
 
+## Objet (Json)
+
+(lien infos w3scools)[https://www.w3schools.com/js/js_json_objects.asp]
+
+### Syntax des objet
+
+Entre parenthèse, paire de clé/valeur, séparée par une virgule.
+Les valeurs peuvent être de type string, number, object, array, boolean ou null)
+
+```javascript
+{ "name":"John", "age":30, "car":null }
 ```
+
+### Accéder à la valeur d'un objet
+
+On accède à un objet en donnant le nom de l'objet.clé lié à la valeur que l'on veut récupérer
+
+```javascript
+myObj = { "name":"John", "age":30, "car":null };
+x = myObj.name;
+```
+
+On peut aussi accéder à un la valeur d'un objet en utilisant les crochets
+
+```javascript
+myObj = { "name":"John", "age":30, "car":null };
+x = myObj["name"];
+```
+
+### Faire une boucle sur un objet
+
+#### Une boucle for pour accéder aux clés de l'objet
+
+```javascript
+myObj = { "name":"John", "age":30, "car":null };
+
+for (x in myObj) 
+{
+    document.getElementById("demo").innerHTML += x + "<br>;
+}
+
+```
+
+* document.getElementByID("demo") --> cible tout les élément dans le document HTML qui ont l'ID "demo"
+* innerHTML += x --> est l'écriture raccourcie pour indiquer innerHTML = innerHTML + x
+* innerHTML récupère ou définit tout le balisage et le contenu au sein d'un élément donné.
+* document.getElementById("demo").innerHTML += x; signifie donc;
+* Cibler tous les éléments sur la page HTML avec id "demo", récupérer dans cet élément tout le balisage (<p>, <div>, <h1>,... ) et leurs contenu et ensuite ajouter x à cela.
+* En fait cela ajoute à la suite du contenu de l'élément avec l'id "demo, la liste des clés du tableau soit name, age, car
+
+#### Une boucle for pour accéder aux valeurs correspondant au clefs de l'objet
+
+
+```javascript
+myObj = { "name":"John", "age":30, "car":null };
+
+for (x in myObj) 
+{
+    document.getElementById("demo").innerHTML += myObj[x];
+}
+
+// idem que pour accéder au clef mais au lieu d'ajouter la clef à la fin, on ajoute la valeur qui correspond à la cle en indiquant le nom de l'objet et le x représentant la clef entre crochets.
+//Cela va boucler sur toutes les valeurs du tableaux pour les afficher à la suite de l'élément dans le document HTML portant l'ID "demo"
+```
+
+### Objets JSON imbriqués (Nested)
+
+Une valeur d'un objet JSON peut être un autre objet JSON
+
+```javascript
+myObj = {
+    "name":"John",
+    "age":30,
+    "cars": {
+        "car1":"Ford",
+        "car2":"BMW",
+        "car3":"Fiat"
+    }
+ }
+```
+
+#### Pour accéder à une valeur stockée dans un objet JSON imbriqué dans un autre objet JSON
+
+On peut utiliser deux type de notation avec des points ou avec point et crochets
+
+```javascript
+myObj = {
+    "name":"John",
+    "age":30,
+    "cars": {
+        "car1":"Ford",
+        "car2":"BMW",
+        "car3":"Fiat"
+    }
+ }
+x = myObj.cars.car2;
+
+//ou autre notation avec point et crochets
+
+x = myObj.cars["car2"];
+```
+
+#### Modifié une valeur stockée dans un objet JSON imbriqué dans un autre objet JSON
+
+Avec la notation point
+
+```javascript
+myObj.cars.car2 = "Mercedes";
+```
+
+Avec la notation point et crochet
+
+```javascript
+myObj.cars["car2"] = "Mercedes";
+```
+
+#### Supprimé une paire cle/valeur stockée dans un objet JSON imbriqué dans un autre objet JSON
+
+delete myObj.cars.car2;
+
+
+### Les tableaux dans les Objets JSON
+
+Les tableaux en JSON sont presque les même qu'en javascript
+
+Dans JSON, les valeurs de tableau doivent être de type string, number, object, array, boolean ou null. 
+En JavaScript, les valeurs de tableau peuvent être toutes les réponses ci-dessus, ainsi que toute autre expression JavaScript valide, y compris les fonctions, les dates et les valeurs indéfinies.
+
+Un tableaux peut stocké plusieurs valeur pour une clef dans une objet JSON
+
+```javascript
+{
+"name":"John",
+"age":30,
+"cars":[ "Ford", "BMW", "Fiat" ]
+}
+```
+
+#### Accéder aux valeurs stockées dans un tableau situé dans un Objets JSON
+
+```javascript
+x = myObj.cars[0];
+```
+
+#### Boucle pour récupérer toutes les valeurs stockées dans un tableau situé dans un Objets JSON
+
+##### Avec une boucle for-in
+
+```javascript
+for (i in myObj.cars) 
+{
+    x += myObj.cars[i];
+}
+```
+
+* Dans le paramètre de la boucle on indique i dans nom_objet
+* x = x + nom_objet.clef[i];
+* On peut ajouter un br pour retourner à la ligne après chaque valeurs x += myObj.cars[i] + "<br>";
+* Cela affichera une liste de toutes les valeurs stockée dans le tableau correspondant à la clé "cars"
+* Cela affichera donc Ford, BMW, Fiat
+
+##### Avec une boucle for
+
+```javascript
+for (i = 0; i < myObj.cars.length; i++) 
+{
+    x += myObj.cars[i];
+}
+```
+
+* On crée une boucle for traditionnelle
+* En premier paramètre (où commence la boucle) on indique i=0 (car le premier index d'un tableau est 0)
+* En second paramètre (jusque quand la boucle doit s'effectuer), on indique la taille de la longueur du tableau qui sera automatiquement récupérer grace à la fonction native javascript length.
+* Attention lenght s'applique sur nom_objet.clé et pas directement sur l'objet
+* En 3e paramètre on indique l'incrémentation soit i ++ ce qui est la notation raccourcie pour dire i= i+1 (on augmente la valeur de l'index de 1 à chaque boucle), donc d'abord on affiche la valeur correspondant à l'index 0, puis la valeur correspondant à l'index 1, etc...
+
+
+### Les tableaux imbriqués dans les Objets JSON
+
+La valeur d'un tableau peut également être un autre tableau ou même un autre objet JSON
+
+```javascript
+myObj = {
+    "name":"John",
+    "age":30,
+    "cars": [
+        { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
+        { "name":"BMW", "models":[ "320", "X3", "X5" ] },
+        { "name":"Fiat", "models":[ "500", "Panda" ] }
+    ]
+ }
+```
+
+#### Boucle pour récupérer les valeurs stockées dans les tableaux imbriqués dans un tableau dans les Objets JSON
+
+```javascript
+for (i in myObj.cars) 
+{
+    x += "<h1>" + myObj.cars[i].name + "</h1>";
+
+    for (j in myObj.cars[i].models) 
+	{
+        x += myObj.cars[i].models[j];
+    	}
+}
+```
+
+* Si on veut obtenir un bel affichage on peut même indiqué que les valeurs du premier sous tableau s'afficheront comme des h1 et que leur contenu s'affichera ensuite normalement
+* x = x + "<h1>" + myObj.cars[i].name + "</h1>";On affiche donc sous forme de h1 la valeur contenue dans l'objet myObj dans le tableau correspondant à la clé "cars" qui contient également un autre tableau dont on veut afficher la valeur correspondant à la clé "name"
+* Ensuite dans la boucle, on insère une seconde boucle qui va prendre comme paramètre j (pour ne pas utiliser une seconde fois i) dans nom_objet.clé[valeur d'index i]. nom_clé dans le tableau imbriqué dans le tableau.
+* Cette boucle va effectuer x += myObj.cars[i].models[j];
+* En bref, on boucle pour afficher les valeurs correspondant à la clé du deuxième tableau imbriqué dans le premier tableau. 
+
+
+#### Modifier les valeurs stockées dans les tableaux imbriqués dans un tableau dans les Objets JSON
+
+On utilise le numéro de l'index pour modifier une valeur dans un tableau
+
+```javascript
+ myObj.cars[1] = "Mercedes";
+```
+
+#### Supprimer une paire clé/valeur stockée dans les tableaux imbriqués dans un tableau dans les Objets JSON
+
+```javascript
+delete myObj.cars[1];
+```
+
+### JSON.parse()
+
+Un usage courant de JSON est d'échanger des données avec un serveur web.
+Lorsque l'on reçoit des données d'un serveur web, les données sont toujours des chaînes de caractère
+Analyser les données avec JSON.parse() et les données deviennent une objet Javascript.
+
+Texte reçu d'un serveur web (toujours chaîne de caractère - string)
+
+```javascript
+'{ "name":"John", "age":30, "city":"New York"}'
+```
+
+On utilise la fonction JSON.parse() pour convertir ce texte en objet JavaScript
+
+```javascript
+var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+```
+
+Attention, il faut vérifier que le texte est écrit au format JSON car sinon cela renvoie une erreur de syntax.
+
+On peut maintenant utiliser l'objet JavaScript dans notre page
+
+```html
+<p id="demo"></p> 
+
+<script>
+document.getElementById("demo").innerHTML = obj.name + ", " + obj.age; 
+</script>
+```
+
+### JSON depuis le serveur
+
+On peut demander JSON à partir du serveur en utilisant une requête AJAX.
+Tant que la réponse du serveur est écrite au format JSON, vous pouvez confertir la chaîne (parse) en un objet JavaScript.
+
+Je verrais cette partie plus tard car elle ne me semble pas d'actualité tant que je n'ai pas parfaitement intégrer les autres fonctionnalités Jason. Lorsque je remprendrais cet apprentissage, je pourrais continuer ma prise de note à partir de la page https://www.w3schools.com/js/js_json_parse.asp
+
+
+
+
+
+
+
+
 

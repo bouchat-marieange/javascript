@@ -155,7 +155,7 @@ for (let i = 0; i < acteur.length; i ++)
 // Ajout d'un nouveau personnage (Bowser) à la fin du tableau cloné avec push
 let mariokart = ["Mario","Luigi", "Peach"];
 // undefined
-let mariokart_clone = perso_mariokart.slice();
+let mariokart_clone = mariokart.slice();
 // undefined
 mariokart_clone[0];
 // "Mario"

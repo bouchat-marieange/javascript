@@ -53,13 +53,13 @@ console.log (voleBateau);
 // La valeur aléatoire peut être seulement 0 ou 1
 // La valeur aléatoire peut aller de 0 à 10 inclu
 
-function getRandomIntInclusive(min, max){
-  min = Math.ceil (50);
-  max = Math.floor (100);
-  return Math.floor(Math.random()*(max - min +1)) + min;
-}
+// function getRandomIntInclusive(min, max){
+//   min = Math.ceil ();
+//   max = Math.floor ();
+//   return Math.floor(Math.random()*(max - min +1)) + min;
+// }
 
-console.log(getRandomIntInclusive());
+// console.log(getRandomIntInclusive());
 
 // La version étape par étape du code (merci Alexandre)
 function getRandomIntInclusive(min, max){
@@ -70,7 +70,15 @@ function getRandomIntInclusive(min, max){
   return rand;
 }
 
-console.log(getRandomIntInclusive(20,30));
+console.log(getRandomIntInclusive(50,100));
+
+// La version encore plus simple du code
+// https://www.w3schools.com/js/js_random.asp
+// function getRndInteger(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1) ) + min;
+// }
+// console.log(getRandomIntInclusive(20,30));
+
 
 //Explication de la fonction
 

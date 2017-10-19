@@ -28,6 +28,7 @@ var sous_tableau = Character.items_to_give;
 for (x in Character)
 {
   console.log (Character[x])
+  // console.log(this.items_to_give);
   // document.getElementById("demo").innerHTML += Character[x] + "<br>";
 
   // for (var i=0; i<sous_tableau.length;i++)

@@ -393,6 +393,7 @@ parseFloat() // Permet de transformer une chaîne de caractères en un nombre fl
 parseInt() //La fonction parseInt() analyse une chaîne de caractère fournie en argument et renvoie un entier exprimé dans une base donnée.
 
 parseFloat(string)
+```
 Paramètres
 string
 Une chaîne de caractères la valeur qu'on souhaite analyser et transformer en un nombre flottant.

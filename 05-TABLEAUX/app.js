@@ -54,6 +54,23 @@ for (let j =1 ; j <=8; j++)
 // VM440:3 8 + 9 =
 // VM440:4 17
 
+//Alternative où on additionne tout simplement tout les chiffres du tableau pour avoir une seule somme
+
+var my_array = [1, 2, 3, 4, 5, 6, 7, 8 ,9];
+var total = 0;
+
+for (var i = 0; i < my_array.length; i++){
+
+total = total + my_array[i];
+}
+
+console.log(total);
+
+// Résultat:
+//45
+
+
+
 // Vos meilleurs choix
 
 let acteur = ["Hanks", "Smith", "Williams"]

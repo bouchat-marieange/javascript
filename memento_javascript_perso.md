@@ -394,6 +394,7 @@ parseInt() //La fonction parseInt() analyse une chaîne de caractère fournie en
 
 parseFloat(string)
 ```
+
 Paramètres
 string
 Une chaîne de caractères la valeur qu'on souhaite analyser et transformer en un nombre flottant.
@@ -408,8 +409,9 @@ Pour des raisons arithmétiques, la valeur NaN n'est jamais un nombre, quelle qu
 
 parseFloat() peut également analyser et renvoyer la valeur Infinity qui représente l'infini numérique. Ici, on pourra utiliser la fonction isFinite() afin de déterminer si le résultat obtenu est un nombre fini (c'est-à-dire qui n'est ni Infinity, ni -Infinity, ni NaN).
 
-
+```javascript
 parseInt(string, base);
+```
 
 Paramètres
 string
@@ -423,7 +425,7 @@ Un entier obtenu à partir de l'analyse de la chaîne de caractères. Si le prem
 
 ## Objet (Json)
 
-(lien infos w3scools)[https://www.w3schools.com/js/js_json_objects.asp]
+<https://www.w3schools.com/js/js_json_objects.asp>
 
 ### Syntax des objet
 
@@ -461,14 +463,14 @@ for (x in myObj)
 {
     document.getElementById("demo").innerHTML += x + "<br>;
 }
-
 ```
+
 
 * document.getElementByID("demo") --> cible tout les élément dans le document HTML qui ont l'ID "demo"
 * innerHTML += x --> est l'écriture raccourcie pour indiquer innerHTML = innerHTML + x
 * innerHTML récupère ou définit tout le balisage et le contenu au sein d'un élément donné.
 * document.getElementById("demo").innerHTML += x; signifie donc;
-* Cibler tous les éléments sur la page HTML avec id "demo", récupérer dans cet élément tout le balisage (<p>, <div>, <h1>,... ) et leurs contenu et ensuite ajouter x à cela.
+* Cibler tous les éléments sur la page HTML avec id "demo", récupérer dans cet élément tout le balisage (p, div, h1,... ) et leurs contenu et ensuite ajouter x à cela.
 * En fait cela ajoute à la suite du contenu de l'élément avec l'id "demo, la liste des clés du tableau soit name, age, car
 
 #### Une boucle for pour accéder aux valeurs correspondant au clefs de l'objet
@@ -481,10 +483,10 @@ for (x in myObj)
 {
     document.getElementById("demo").innerHTML += myObj[x];
 }
-
-// idem que pour accéder au clef mais au lieu d'ajouter la clef à la fin, on ajoute la valeur qui correspond à la cle en indiquant le nom de l'objet et le x représentant la clef entre crochets.
-//Cela va boucler sur toutes les valeurs du tableaux pour les afficher à la suite de l'élément dans le document HTML portant l'ID "demo"
 ```
+
+* idem que pour accéder au clef mais au lieu d'ajouter la clef à la fin, on ajoute la valeur qui correspond à la cle en indiquant le nom de l'objet et le x représentant la clef entre crochets.
+* Cela va boucler sur toutes les valeurs du tableaux pour les afficher à la suite de l'élément dans le document HTML portant l'ID "demo"
 
 ### Objets JSON imbriqués (Nested)
 
@@ -629,7 +631,7 @@ for (i in myObj.cars)
 ```
 
 * Si on veut obtenir un bel affichage on peut même indiqué que les valeurs du premier sous tableau s'afficheront comme des h1 et que leur contenu s'affichera ensuite normalement
-* x = x + "<h1>" + myObj.cars[i].name + "</h1>";On affiche donc sous forme de h1 la valeur contenue dans l'objet myObj dans le tableau correspondant à la clé "cars" qui contient également un autre tableau dont on veut afficher la valeur correspondant à la clé "name"
+* On affiche donc sous forme de h1 la valeur contenue dans l'objet myObj dans le tableau correspondant à la clé "cars" qui contient également un autre tableau dont on veut afficher la valeur correspondant à la clé "name"
 * Ensuite dans la boucle, on insère une seconde boucle qui va prendre comme paramètre j (pour ne pas utiliser une seconde fois i) dans nom_objet.clé[valeur d'index i]. nom_clé dans le tableau imbriqué dans le tableau.
 * Cette boucle va effectuer x += myObj.cars[i].models[j];
 * En bref, on boucle pour afficher les valeurs correspondant à la clé du deuxième tableau imbriqué dans le premier tableau. 

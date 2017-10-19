@@ -1,0 +1,5 @@
+splice
+indexOf
+toUpperCase
+document.getElementById
+onclick

@@ -20,6 +20,11 @@ Pour afficher un message dans une fenêtre pop-up
 alert();
 ```
 
+Pour afficher un message dans une fenêtre pop-up avec un champ pour que l'utilisateur puisse faire une saisie de texte
+
+```javascript
+prompt();
+```
 
 ## Variables
 
@@ -334,3 +339,86 @@ confirm("texte);
 window:window.confirm("texte");
 ou 
 confirm("texte);
+
+
+## Math
+
+### Math Object
+
+L'objet Math est un objet natif dont les méthodes et propriétés permettent l'utilisation de constantes et fonctions mathématiques. Cet objet n'est pas une fonction.
+
+Math n'est pas un constructeur (contrairement au autres objets globaux)
+
+Toutes les propriétés et méthodes de Math sont statiques.
+
+Pour accéder à la constante PI, on utilise Math.PI
+Pour accéder à la fonction sinus, on utilise Math.sin(x), où x est l'argument de la méthode.
+
+Les constantes sont définies avec la précision des nombres réels en Javascript.
+
+
+```javascript
+var x = Math.PI;            // Returns PI
+var y = Math.sqrt(16);      // Returns the square root (racine carrée) of 16
+```
+
+### Math Object Methods
+
+```javascript
+Math.ceil(x)	//Renvoie la valeur de x arrondie supérieur à son entier le plus proche
+		//Returns the value of x rounded up to its nearest integer)
+
+Math.floor(x)	//Renvoie la valeur de x arrondie inférieur à son entier le plus proche	
+		//Returns the value of x rounded down to its nearest integer
+
+Math.max(x, y, z, ...)	//Renvoie le nombre avec la valeur la plus élevée
+			//Returns the number with the highest value
+
+Math.min(x, y, z, ...)	//Renvoie le nombre avec la valeur la plus basse
+			//Returns the number with the lowest value
+
+Math.random()	//Retourne un nombre aléatoire entre 0 et 1
+		//Returns a random number between 0 and 1
+
+Math.round(x)	//Renvoie la valeur de x arrondie à son entier le plus proche
+		//Returns the value of x rounded to its nearest integer
+
+```
+
+### Transformation
+
+```javascript
+parseFloat() // Permet de transformer une chaîne de caractères en un nombre flottant après avoir analysée celle-ci (parsing).
+
+parseInt() //La fonction parseInt() analyse une chaîne de caractère fournie en argument et renvoie un entier exprimé dans une base donnée.
+
+parseFloat(string)
+Paramètres
+string
+Une chaîne de caractères la valeur qu'on souhaite analyser et transformer en un nombre flottant.
+Valeur de retour
+Un nombre flottant obtenu à partir de l'analyse de la chaîne de caractères. Si le premier caractère ne permet pas d'obtenir un nombre, ce sera la valeur NaN qui sera renvoyée.
+
+parseFloat analyse l'argument fourni sous la forme d'une chaîne de caractères et renvoie un nombre flottant correspondant. L'analyse de la chaîne s'arrête dès qu'un caractère qui n'est pas +,-, un chiffre, un point ou un exposant. Ce caractère, ainsi que les suivants, seront ignorés. Les blancs en début et en fin de chaîne sont autorisés..
+
+Si le premier caractère de la chaîne ne peut pas être converti en un nombre, parseFloat() renverra NaN.
+
+Pour des raisons arithmétiques, la valeur NaN n'est jamais un nombre, quelle que soit la base considérée. On peut utiliser la méthode isNaN afin de déterminer si le résultat obtenu par parseFloat() est NaN. Si NaN est passé comme valeur lors d'opérations arithmétiques, ces opérations renverront également NaN comme résultat.
+
+parseFloat() peut également analyser et renvoyer la valeur Infinity qui représente l'infini numérique. Ici, on pourra utiliser la fonction isFinite() afin de déterminer si le résultat obtenu est un nombre fini (c'est-à-dire qui n'est ni Infinity, ni -Infinity, ni NaN).
+
+
+parseInt(string, base);
+
+Paramètres
+string
+La valeur qu'on souhaite analyser et convertir. Si l'argument string n'est pas une chaîne de caractères, elle sera convertie en une chaîne (grâce à l'opération abstraite ToString) . Les blancs contenus au début de l'argument sont ignorés.
+base
+Un entier compris entre 2 et 36 qui représente la base utilisée pour la valeur représentée dans la chaîne. La base communément utilisée est la base décimale et on utilisera donc 10 dans ce cas pour ce paramètre. Ce paramètre doit toujours être utilisé, en effet s'il n'est pas spécifié, le comportement de la fonction n'est pas garanti et peut varier d'une plate-forme à une autre.
+Valeur de retour
+Un entier obtenu à partir de l'analyse de la chaîne de caractères. Si le premier caractère ne permet d'obtenir un nombre, ce sera NaN qui sera renvoyé.
+
+
+
+```
+

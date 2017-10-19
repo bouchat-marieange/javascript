@@ -385,6 +385,34 @@ Math.round(x)	//Renvoie la valeur de x arrondie à son entier le plus proche
 
 ```
 
+### Générer une valeur aléatoire entière entre une valeur maximal et minimal (entre 50 et 100)
+ 
+```javascript
+function getRndInteger(min, max) 
+{
+     return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+// avec les valeurs 50 et 100
+
+function getRndInteger(50, 100) 
+{
+     return Math.floor(Math.random() * (100 - 50 + 1) ) + 50;
+}
+
+
+### Choisir une valeur aléatoirement dans un tableau
+
+```javascript
+var mon_tableau = ["Goro", "Johnny Cago", "Kano", "Liu Kano", "Raiden", "Reptil", "Scorpion", "Shang Tsun", "Sonya", "Sub-Zero"];
+var longueur_tableau = mon_tableau.length;//renvoie 10 (car 10 éléments dans le tableau)
+var rand_index = Math.random()*(longueur_tableau - 0);
+var rand_index = Math.floor(rand_index)+ 0;
+console.log (rand_index);
+console.log (mon_tableau[rand_index]);
+```
+
+
 ### Transformation
 
 ```javascript
@@ -423,7 +451,8 @@ Un entier obtenu à partir de l'analyse de la chaîne de caractères. Si le prem
 
 
 
-## Objet (Json)
+
+## Objet (JSON)
 
 <https://www.w3schools.com/js/js_json_objects.asp>
 

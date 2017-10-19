@@ -134,3 +134,24 @@ console.log(getRandomIntInclusive(50,100));
 //Math.floor (28,8953 + 50)
 //Math.floor(78,8953);
 //Réponse 78
+
+
+// Aléatoire 3
+
+// crée un tableau qui contetient les valeurs suivantes : Goro, Johnny Cago, Kano, Liu Kano, Raiden, Reptil, Scorpion, Shang Tsun, Sonya, Sub-Zero
+// choisir un personnage aléatoirement dans le tableau
+
+var mon_tableau = ["Goro", "Johnny Cago", "Kano", "Liu Kano", "Raiden", "Reptil", "Scorpion", "Shang Tsun", "Sonya", "Sub-Zero"];
+var longueur_tableau = mon_tableau.length;//renvoie 10 (car 10 éléments dans le tableau)
+var rand_index = Math.random()*(longueur_tableau - 0);
+var rand_index = Math.floor(rand_index)+ 0;
+console.log (rand_index);
+console.log (mon_tableau[rand_index]);
+
+// Je crée mon tableau
+// Je crée une variable longueur_tableau pour stocker le nombre d'élément du tableau que je récupère avec la fonction native length appliquée sur mon tableau
+// Je veux générer un chiffre aléatoire allant de 0 à 9 (pour couvrir toutes les valeurs d'index des cellules de mon tableau)
+//Je crée une variable pour stocker l'index aléatoire  en multipliant le resultat fournit par Math.random (entre 0 et 0.9999...) par la valeur maximale (c'est à dire la longueur de mon tableau : 10) et je soustrait la valeur minimal c'est à dire 0 (la premiere valeur d'index d'un tableau)
+// J'applique ensuite à cette variable la fonction native Math.floor pour arrondir le chiffre obtenu à l'entier inférieur.
+// J'affiche la valeur de l'index aléatoire dans la console
+// J'affiche le contenu de la cellule correspondant à cet index dans la console

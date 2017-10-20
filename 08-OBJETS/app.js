@@ -274,20 +274,34 @@ mainCharacter.attaquer();
 // et lui inflige (niveau du personnage multiplié par le damage de l'arme) de dégats
 // (nom de l'adversaire) a maintenant (life de l'adversaire) de vie
 
-// character = 
-// {
-//   name : "Le limier",
-//   level : 8,
-//   life : 10,
-//   weapon =
-//           {
-//             name: "épée",
-//             damage: 8
-//           }
-//   attack = attack();
-//   receiveDamage = est_blessé();
-//
-//
-// };
-//
-// character = new Object
+character =
+{
+  name : "Le Limier",
+  level : 8,
+  life : 10,
+  weapon :
+          {
+            name: "épée",
+            damage: 8
+          },
+
+  bataille: function ()
+  {
+      let degat = this.level * this.weapon.damage;
+
+      var message = character.name + " attaque " + opponentCharacter.name;
+      message += "avec l'arme " + character.weapon.name;
+      message += "et lui inflige " + degat + " de dégat";
+      message += opponentCharacter.name + " a maintenant" + opponentCharacter.life + " de vie";
+      return console.log(message);
+  },
+
+  receiveDamage: function()
+  {
+    let vie_restante= opponentCharacter.life - degat;
+    return vie-restante;
+  }
+};
+
+
+character.bataille();

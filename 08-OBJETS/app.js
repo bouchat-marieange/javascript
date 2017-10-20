@@ -81,13 +81,15 @@ for (x in Character)
 
 
 
+// On place le tableau contenant toute les variables des différentes armes après avoir créé celles-ci pour éviter que la console ne renvoie une erreur de variable non définie
+
 // un variable qui stocke chaque objet
 var epee =
 {
   title : "épée",
   physic : 8,
   magic : 1,
-  minLevel : 5,
+  minLevel : 10,
   available: true
 }
 
@@ -114,7 +116,7 @@ var arbalete =
   title : "arbalete",
   physic : 5,
   magic : 1,
-  minLevel : 4,
+  minLevel : 8,
   available: true
 }
 
@@ -123,8 +125,8 @@ var hache =
   title : "hache",
   physic : 9,
   magic : 0,
-  minLevel : 9,
-  available: true
+  minLevel : 10,
+  available: false
 }
 
 // Créer un objet tableau qui contient une variable définie avec toutes ses propriétés pour chaque arme. (epee, poisson, etc..). Celle-ci ne sont pas entre "" car il s'agit de nom de variables que l'on à crées et pas de string
@@ -139,24 +141,153 @@ function affiche_objets()
     }
   }
 
-// Appelle la fonction affiche objets
-affiche_objets();
+
+affiche_objets();// Appelle la fonction affiche objets
+
+
 
 //Créer une fonction pour afficher tout les objets disponibles (available == true)
 function affiche_objets_disponibles()
   {
-    for (x of objetAVendre)
+    for (x in objetAVendre)
     {
-      if (x.available == true)
+      if (objetAVendre[x].available == true)
       {
-        console.log(x.title);
+        console.log(objetAVendre[x].title);
       }
     }
   }
 
   affiche_objets_disponibles();
 
+
+
+//Alternative : Créer une fonction pour afficher tout les objets disponibles (available == true)
+// Attention cette fois avec une boucle FOR OF
+
+//Créer une fonction pour afficher tout les objets disponibles (available == true)
+// function affiche_objets_disponibles()
+//   {
+//     for (x of objetAVendre)
+//     {
+//       if (x.available == true)
+//       {
+//         console.log(x.title);
+//       }
+//     }
+//   }
+//
+//   affiche_objets_disponibles();
+
   // x n'est pas une valeur d'incrément, c'est directement l'objet for in (renvoie la propriété d'un objet et pas la valeur) - pour for of pour les liste x c'est l'ojet lui-même (renvoie la valeur d'une liste)
 
 
-// Une autre manière de présenter les choses
+// Créer une fonction pour afficher les objets dont le niveau minimum est de 10
+function affiche_objets_nivMin10 ()
+{
+  for (x in objetAVendre)
+  {
+    if (objetAVendre[x].minLevel == 10)
+    {
+      console.log(objetAVendre[x].title);
+    }
+  }
+}
+
+affiche_objets_nivMin10();
+
+// Explication on boucle sur tout les élément du tableau objetAVendre
+//Si la valeur de l'élément sur lequel on est en train de boucler à une valeur de minLevel =  à 10
+// Alors on affiche la valeur du title de cet élément (le nom de l'arme)/
+//Donc au final ça affiche uniquement les armes dont le minLevel est égal à 10
+
+
+
+// Exercice : Personnage
+
+// crée un objet "mainCharacter" qui possède le propriétés suivantes :
+// name (string)
+// level (int)
+// life (int)
+// weapon (object)
+// attack (function)
+// l'objet "weapon" possède les propriétés suivantes :
+// name (string)
+// damage (int)
+// Appeler la fonction "attack" du personnage
+// la fonction doit retourner : (le nom du personnage) attaque avec l'arme (nom de l'arme) les dégâts sont (niveau du personnage multiplié par le damage de l'arme)
+
+// let arme = {"name": "aiguille", "damage": 5};
+
+let mainCharacter =
+{
+  name : "Arya Stark",
+  level : 6,
+  life : 7,
+
+  weapon :
+          {
+            "name": "aiguille",
+            "damage": 5
+          },
+
+  attaquer: function ()
+    {
+      let degat = this.level * this.weapon.damage;
+
+      console.log (this.name + " attaque avec l'arme " + this.weapon.name + ", " + "les dégâts sont " + degat);
+      return this.name + " attaque avec l'arme " + this.weapon.name + ", " + "les dégâts sont " + degat ;
+    }
+};
+
+mainCharacter.attaquer();
+
+// Attention quand on utilise l'instruction return, on sort automatiquement de la boucle, donc toutes les instructions qui suivent un return et son contenu ne seront pas exécutées.
+// Donc si on veut faire un console.log et un return, mettre toujours le return en dernier car sinon le console.log ne s'exécutera pas et rien ne s'affichera dans la console.
+// Le this dans la fonction fait référence à l'objet donc c'est équivalent de mettre mainCharacter.weapon.name et this.weapon.name
+// L'usage du this permet également de régler certains problème où la console indique que tel variable ou terme n'a pas été défini car il permet de vérifier si ça n'est pas le cas plus haut ou plus bas (je crois ...)
+
+
+// BONUS :
+//
+// Exercice : Adversaire
+//
+// crée un objet "character" qui possèe le propriétés suivantes :
+// name (string)
+// level (int)
+// life (int)
+// weapon (object)
+// attack (function)
+// receiveDamage (function)
+// l'objet "weapon" possèe les propriétés suivantes :
+// name (string)
+// damage (int)
+// crée un objet "opponentCharacter" a partir de character
+//
+// crée un objet "mainCharacter" a partir de character
+//
+// Appeler la fonction "attack" de "mainCharacter" afin qu'il attaque "opponentCharacter"
+//
+// la fonction doit afficher dans la console (ligne par lige)
+// (le nom du personnage) attaque (nom de l'adversaire)
+// avec l'arme (nom de l'arme)
+// et lui inflige (niveau du personnage multiplié par le damage de l'arme) de dégats
+// (nom de l'adversaire) a maintenant (life de l'adversaire) de vie
+
+// character = 
+// {
+//   name : "Le limier",
+//   level : 8,
+//   life : 10,
+//   weapon =
+//           {
+//             name: "épée",
+//             damage: 8
+//           }
+//   attack = attack();
+//   receiveDamage = est_blessé();
+//
+//
+// };
+//
+// character = new Object

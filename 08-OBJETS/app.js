@@ -143,7 +143,6 @@ function affiche_objets()
 affiche_objets();
 
 //Créer une fonction pour afficher tout les objets disponibles (available == true)
-// x n'est pas une valeur d'incrément, c'est directement l'objet for in (renvoie la propriété d'un objet et pas la valeur) - pour for of pour les liste x c'est l'ojet lui-même (renvoie la valeur d'une liste)
 function affiche_objets_disponibles()
   {
     for (x of objetAVendre)
@@ -155,4 +154,9 @@ function affiche_objets_disponibles()
     }
   }
 
-affiche_objets_disponibles();
+  affiche_objets_disponibles();
+
+  // x n'est pas une valeur d'incrément, c'est directement l'objet for in (renvoie la propriété d'un objet et pas la valeur) - pour for of pour les liste x c'est l'ojet lui-même (renvoie la valeur d'une liste)
+
+
+// Une autre manière de présenter les choses

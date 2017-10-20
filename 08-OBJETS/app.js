@@ -1,6 +1,6 @@
 // Exercice Objet JSON
 
-// PNJ (Personnage non-joueur)
+// Exercice : PNJ (Personnage non-joueur)
 
 // Exercice : PNJ (Personnage non-joueur)
 
@@ -57,3 +57,47 @@ for (x in Character)
 // Dans le elseif on indique ce qu'il faut faire si x est égale à au tableau"giveItem", donc comment afficher les tableaux imbriqué
 // Pour afficher tableau imbriqué on va stocké dans une variable apellée item l'élément récupérer Character.giveitem() . Soit la valeur de ce qui se trouve dans l'objet Character et qui correspond à la clef retournée par la fonction giveItem
 // Attention ne pas mettre Character.items_to_give car à ce moment là il va boucler sur tout les éléments du tableau items_to_give au lieu de n'afficher que celui qui a été choisi avec la fonction giveItem.
+
+
+
+// Exercice : Shop
+
+// Crée un tableau avec des objets à vendre (épée, hache, sceptre, etc.)
+//
+// Caractéristique de chaque objet :
+//
+// title (string)
+// physic (int)
+// magic (int)
+// minLevel (int)
+// available (boolean)
+
+// Manipulation :
+//
+// faire une fonction pour afficher tout les objets
+// faire une fonction pour afficher les objets disponibles
+// faire une fonction pour afficher les objets dont le niveau minimum est de 10
+
+objet_a_vendre =
+{
+  epee : ["épée", 8, 1, 5, true],
+  poison : ["poison", 8, 1, 5, false],
+  baton : ["baton", 8, 1, 5, true],
+  arbalete : ["arbalete", 8, 1, 5, true],
+  hache : ["hache", 8, 1, 5, true],
+  //index 0 : title
+  //index 1 : physic
+  //index 2 : magic
+  //index 3 : minLevel
+  //index 4: available
+
+  affiche_objets: function()
+  {
+    for (x in objet_a_vendre)
+    {
+      console.log (this.objet_a_vendre[x]);
+    }
+  }
+}
+
+affiche_objets();

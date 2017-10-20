@@ -290,9 +290,9 @@ character =
       let degat = this.level * this.weapon.damage;
 
       var message = character.name + " attaque " + opponentCharacter.name;
-      message += "avec l'arme " + character.weapon.name;
-      message += "et lui inflige " + degat + " de dégat";
-      message += opponentCharacter.name + " a maintenant" + opponentCharacter.life + " de vie";
+      message += " avec l'arme " + character.weapon.name;
+      message += " et lui inflige " + degat + " de dégat .";
+      message += opponentCharacter.name + " a maintenant " + opponentCharacter.life + " de vie";
       return console.log(message);
   },
 
@@ -303,5 +303,16 @@ character =
   }
 };
 
+opponentCharacter =
+{
+  name : "La Montagne",
+  level : 15,
+  life : 20,
+  weapon :
+          {
+            name: "épée massive",
+            damage: 12
+          }
+};
 
 character.bataille();

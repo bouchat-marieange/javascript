@@ -289,11 +289,18 @@ character =
   {
       let degat = this.level * this.weapon.damage;
 
-      var message = character.name + " attaque " + opponentCharacter.name;
-      message += " avec l'arme " + character.weapon.name;
-      message += " et lui inflige " + degat + " de dégat .";
-      message += opponentCharacter.name + " a maintenant " + opponentCharacter.life + " de vie";
-      return console.log(message);
+      // var message = character.name + " attaque " + opponentCharacter.name;
+      // message += " avec l'arme " + character.weapon.name;
+      // message += " et lui inflige " + degat + " de dégat .";
+      // message += opponentCharacter.name + " a maintenant " + opponentCharacter.life + " de vie";
+      // return console.log(message
+
+      //Solution moins éléguante que celle juste au dessus mais qui malheureusement ne fonctionne pas et affiche toute la phrase sur une même ligne dans la console
+      console.log (character.name + " attaque " + opponentCharacter.name);
+      console.log (" avec l'arme " + character.weapon.name);
+      console.log (" et lui inflige " + degat + " de dégat .");
+      console.log (opponentCharacter.name + " a maintenant " + opponentCharacter.life + " de vie");
+
   },
 
   receiveDamage: function()

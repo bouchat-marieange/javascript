@@ -32,7 +32,7 @@ function rand_nb(min, max)
 {
   console.log ("La valeur entrée par l'utilisateur est " + input); // affiche dans la console le numéro entré par l'utilisateur et stocké dans la variable input
   return Math.floor (Math.random() * (max - min + 1)) + min; //génère un nombre aléatoire entier (arrondi) une valeur maximale et minimale que cette fonction prend comme paramètre (entre parenthèses)
-}
+};
 
 
 var juste_prix = rand_nb (20,80); //stocke dans variable juste_prix, le nombre entre 20 et 80 générer par la fonction rand_nb
@@ -45,6 +45,7 @@ function devine()
 
   if (input > juste_prix) // Si input est inférieur au juste prix
   {
+    console.log (input);
     message = "C'est moins !"; // on redéfinit la valeur de la variable message
     alert (message);
     input = prompt("Entrez un chiffre de 20 à 80");
@@ -52,30 +53,60 @@ function devine()
   }
   else if (input < juste_prix) // Si input est supérieur au juste prix
   {
+    console.log (input);
     message = "C'est plus !"; // on redéfinit la valeur de la variable message
     alert (message);
     input = prompt("Entrez un chiffre de 20 à 80");
     devine();
   }
+  else if (input == juste_prix)// Si input est égale au juste prix (le juste prix est trouvé, l'utilisateur à gagné !)
+  {
+    console.log (input);
+    console.log ("gagné !");
+    message = "C'est juste tu as trouvé en " + nb_essai + " coups !";// on redéfinit la valeur de la variable message
+    alert (message);//on affiche le message gagné à l'utilisateur
+      function rejoue()
+      {
+        let replay = window.confirm("Voulez-vous rejouer ?");
+
+          if (replay == true)
+          {
+            console.log ("true - rejoue");
+            nb_essai= 0;
+            rand_nb();
+            input = prompt("Entrez un chiffre de 20 à 80");
+            devine();
+          }
+          else
+          {
+            console.log ("false - au revoir");
+            alert ("A bientôt !");
+          }
+      }
+    rejoue();
+  }
 };
 
-// devine();// on appelle la fonction devine
+devine();// on appelle la fonction devine
 
-if (input == juste_prix) // Si input est égale au juste prix (le juste prix est trouvé, l'utilisateur à gagné !)
-{
-  message = "C'est juste tu as trouvé en " + nb_essai + " coups !";// on redéfinit la valeur de la variable message
-  alert (message);// on affiche un message indiquant à l'utilisateur qu'il a trouvé en x coups
-  let replay = window.confirm("Voulez-vous rejouer ?");
-    if (replay == true)
-    {
-      devine();
-    }
-    else
-    {
-      alert ("A bientôt !");
-    }
-}
-else // Si le juste prix n'a pas été trouvé
-{
-  devine(); // on relance la fonction devine
-}
+
+// Tests supplémentaires
+
+// else if (input > 80);
+// {
+//   message = "Le chiffre dépasse la valeur maximale de 80";
+//   alert (message);
+//   devine();
+// }
+// else if (input < 20);
+// {
+//   message = "Le chiffre est inférieur à la valeur minimale de 20";
+//   alert (message);
+//   devine();
+// }
+// else if (input isNaN === false )
+// {
+//   message = "Vous n'avez pas entrer un chiffres ! Réessayer !";
+//   alert (message);
+//   devine();
+// }

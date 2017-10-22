@@ -50,7 +50,7 @@ function devine()
     alert (message);
     input = prompt("Entrez un chiffre de 20 à 80");
     devine();
-  }
+  }===
   else if (input < juste_prix) // Si input est supérieur au juste prix
   {
     console.log (input);

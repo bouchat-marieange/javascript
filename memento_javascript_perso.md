@@ -750,9 +750,166 @@ Tant que la réponse du serveur est écrite au format JSON, vous pouvez conferti
 
 Je verrais cette partie plus tard car elle ne me semble pas d'actualité tant que je n'ai pas parfaitement intégrer les autres fonctionnalités Jason. Lorsque je remprendrais cet apprentissage, je pourrais continuer ma prise de note à partir de la page https://www.w3schools.com/js/js_json_parse.asp
 
+HTML est une structure de type XML. Les éléments qui le forment ont une structure de noeuds avec des parents et des enfants. Comme le tronc et les branches d'un arbre.Il y a un élément de racine (html) avec des branches comme head et body qui a leur tour ont également des branches. C'est pourquoi, le DOM est aussi appelé l'arbre DOM
+
+La modification du DOM se fait en choisissant un élément et en changeant quelque chose à son sujet. C'est une action que l'on fait souvent en javascript.
+Pour accéder au DOM à partir de Javascript, l'objet document est utilisé. Il est fourni par le navigateur et permet au code sur la page javascript d'intéragir avec le contenu.
+
+
+## DOM
+
+DOM = Document Object Model
+permet de manipuler la structure et le style d'un page HTML.
+Pour voir à quoi ressemble le DOM d'une page, ouvrir les outils de développement dans votre navigateur (Ctrl+ Maj + i ou j) et rechercher l'inspecteur d'élément. Dans la plupart des navigateurs vous pouvez supprimer et modifier directement les éléments du DOM.
+
+
+HTML est une structure de type XML. Les éléments qui le forment ont une structure de noeuds avec des parents et des enfants. Comme le tronc et les branches d'un arbre.Il y a un élément de racine (html) avec des branches comme head et body qui a leur tour ont également des branches. C'est pourquoi, le DOM est aussi appelé l'arbre DOM
+
+
+La modification du DOM se fait en choisissant un élément et en changeant quelque chose à son sujet. C'est une action que l'on fait souvent en javascript.
+Pour accéder au DOM à partir de Javascript, l'objet document est utilisé. Il est fourni par le navigateur et permet au code sur la page javascript d'intéragir avec le contenu.
+
+### Obtenir un élément
+
+Il y a plusieurs manière d'obtenir un élément
+
+#### Par l'ID
+
+document.getElementById permet d'obtenir un élément à partir de son ID
+
+```javascript
+var pageHeader = document.getElementById('pageHeader');
+```
+
+L'élément de pageHeader peut alors être manipulé. On peut par exemple modifier sa taille ou sa couleur.Ou un autre code peut être déclaré pour gérer l'élément quand on clique dessuou ou quand il est survolé.
+
+getElementById est une méthode de l'objet document. La plupart des méthodes utilisées pour accéder à la page se trouvent sur l'objet document.
+
+Par le tag (nom de la balise) document.getElementByTagName fonctionne de la même manière que get ElementById, sauf qu'elle prend un nom de tag (div, ul, li, ...) au lieu d'un ID. Elle renvoie une NodeList qui est essentiellement un tableau des éléments DOM qu'elle a trouvé.
+
+#### Par le nom de la classe
+
+document.ElementByClassName renvoie le même genre de NodeList comme getElementByTagname, sauf que vous passez un nom de class et non un nom de tag.
+
+
+#### En sélecteur CSS
+
+De nouvelles méthodes sont disponibles dans les navigateurs modernes. Elles font des sélections d'éléments plus faciles en permettant l'utilisation de sélecteur CSS. Il s'agit de 
+document.querySelector
+et
+document.querySelectorAll
+
+```javascript
+var pageHeader = document.querySelector('#header');
+var bouton = document.querySelectorAll('.btn');
+```
+
+querySelector, comme getElementById, retourne un seul élément alors que querySelectorAll renvoie une NodeList. Si plusieurs éléments correspondent au même sélecteur et que vous utilisez querySelector, seul le premier élément serar retourné. 
+
+
+### Utiliser le DOM avec Javascript
+
+// la fonction getElementById() permet d'accéder à un élément de l'arbre DOM grâce à son id.
+
+```html
+<p id="paragraphe01" class="texte">Bonjour à tous</p>
+```
+
+// Le bloc <p> est accessible de la manière suivante:
+
+```javascript
+document.getElementById("paragraphe01")
+```
+
+// On peut donc agir sur lui en changeant par exemple sa couleur
+
+```javascript
+document.getElementById("paragraphe01").style.color = "#ddcddc";
+```
+
+### Naviguer dans l'arbre DOM en Javascript
+
+A partir de Javascript pour pouvez naviguer dans l'arbre DOM et atteindre et
+modifier chacun des éléments du document par l'intermédiaire de fonctions
+dont voici les plus utiles
+
+#### parentNode
+L'attribut renvoie son noeud parent. S'il n'y a pas de noeud parent, il renvoie NULL
+
+#### childNote
+L'attribut renvoie un tableau de tous ses noeuds enfants. S'il n'y a ps de noeud enfant , alors il renvoie un tableau vide
+
+#### firstChild
+L'attribut renvoie son premier noeud enfant. S'il n'y a pas de noeud enfant, il renvoie NULL
+
+#### lastChild
+L'attribut renvoie son dernier noeud enfant. S'il n'y as pas de noeud enfant, il renvoie NULL
+
+#### nextSilbing
+L'attribut renvoie le noeud frere qui le suit. S'il n'apas de noeud suivant , il renvoie NULL
+
+#### previousSilbing
+L'attribut renvoie le noeud frere qui le précède. S'il n'a pas de noeud précédent, il renvoie NULL
 
 
 
+
+### Manipuler les éléments et modifier l'arbre DOM
+
+#### Fonction : createElement
+permet de créer un élémnent du type passé en paramètre. Dans cette expemple cela crée une div
+```javascript
+document.createElement("div")
+```
+
+#### Fonction : createTextNode
+permet de créer un élément de type texte
+```javascript
+text = document.createTextNode("Bonjour à tous";)
+```
+
+#### Fonction :appendChild
+permet d'insérer un noeud en dernière position des ses élement enfants
+```javascript
+nouveauDiv = document.createElement("div");
+text = document.createTextNode("Bonjour à tous");
+nouveauDiv.appendChild(text);
+document.body.appendChild(nouveauDiv);
+```
+
+#### Fonction : insertBefore
+permet d'insérer un noeud enfant A avant un noeud enfant B
+```javascript
+noeudA = document.createElement("div");
+document.body.insertBefore(noeudA, noeudB);
+```
+
+#### Fonction : replaceChild
+permet de remplacer un noeud enfant A par un noeud enfant B
+elementParent.replaceChild(noeudB, noeudA);
+```
+
+#### Fonction: cloneNode
+permet de cloner un noeud A et de façon optionnel ses enfants, et un noeud B
+```javascript
+noeudB = noeudA.cloneNode(true);
+```
+
+#### Fonction : removeChild
+permet de supprimer un noeud enfant
+```javascript
+elementParent.removeChild(noeud);
+```
+
+
+### Ce qu'il faut retenir
+
+* La représentation du document sous forme d'arbre DOM permet de le manipuler grâce à différentes fonctions et/ou atttributs de chaque noeud.
+* Il est extrêment important de comprendre la notion de DOL pour réaliser des programmation AJAX efficaces
+* Ces différentes fonctions permettent:
+	* La navigation dans l'arbre DOM (parentNode, childNote, ...)
+	* La récupération d'information dans l'arbre DOM
+	* La manipulation de l'arbre DOM (createElement, apprendChild, ...)
 
 
 

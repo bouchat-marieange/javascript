@@ -1,7 +1,5 @@
 // Bac à sable pour s'entrainer en lisant le readme
 
-// Exercice
-
 //Enoncé Exercice
 
 // Déclarez les variables suivantes :
@@ -24,12 +22,11 @@
 
 // Solution
 
-var message; //on déclare la variable message, sans lui donner de valeur pour l'instant que elle variera selon les cas
-var nb_essai; // on déclare la variable nb_essai et on lui attribue la valeur de 0. Au départ l'utilisateur n'a pas encore fait d'essai. Cette valeur sera augmenté de 1 à chaque essai grâce à une instruction dans la fonction devine
-var min = 20; // on déclare la variable min qui indique la valeur minimum qu'on peut entrer et on lui attribue la valeur de 20. Cette variable sera utilisée comme valeur minimal pour générer un nombre aléatoire avec la fonction rand_nb
-var max = 80; // on déclare la variable min qui indique la valeur maximum qu'on peut entrer et on lui attribue la valeur de 80. Cette variable sera utilisée comme valeur maximale pour générer un nombre aléatoire avec la fonction rand_nb
-var input = prompt("Entrez un chiffre de 20 à 80"); // stocke dans une variable la valeur entrée dans la fêntre popup prompt lui demandant d'indiquer un nombre entre 20 et 80
-var gagne = false;
+let message; //on déclare la variable message, sans lui donner de valeur pour l'instant que elle variera selon les cas
+let nb_essai = 0; // on déclare la variable nb_essai et on lui attribue la valeur de 0. Au départ l'utilisateur n'a pas encore fait d'essai. Cette valeur sera augmenté de 1 à chaque essai grâce à une instruction dans la fonction devine
+let min = 20; // on déclare la variable min qui indique la valeur minimum qu'on peut entrer et on lui attribue la valeur de 20. Cette variable sera utilisée comme valeur minimal pour générer un nombre aléatoire avec la fonction rand_nb
+let max = 80; // on déclare la variable min qui indique la valeur maximum qu'on peut entrer et on lui attribue la valeur de 80. Cette variable sera utilisée comme valeur maximale pour générer un nombre aléatoire avec la fonction rand_nb
+let input = prompt("Entrez un chiffre de 20 à 80"); // stocke dans une variable la valeur entrée dans la fêntre popup prompt lui demandant d'indiquer un nombre entre 20 et 80
 
 function rand_nb(min, max)
 {
@@ -38,73 +35,56 @@ function rand_nb(min, max)
 };
 
 
-
 var juste_prix = rand_nb (20,80); //stocke dans variable juste_prix, le nombre entre 20 et 80 générer par la fonction rand_nb
 console.log ("Le juste prix est " + juste_prix); // affiche dans console le nombre entre 20 et 80 générer par la fonction rand_nb
 
 function devine()
 {
-  nb_essai = 0; // A chaque fois que la fonction s'exécute, le nombre d'essai stocké dans la variable nb_essai augmente de 1. Ecrire nb_essai++ équivaut à écrire nb_essai = nb_essai + 1
+  nb_essai++; // A chaque fois que la fonction s'exécute, le nombre d'essai stocké dans la variable nb_essai augmente de 1. Ecrire nb_essai++ équivaut à écrire nb_essai = nb_essai + 1
   console.log ("Le nombre d'essai est de " + nb_essai + " coup(s).")
 
-
-  while (gagne = false) // Boucle while pour continuer à boucler automatiquement tant que la condition gagne = false n'est pas remplie
+  if (input > juste_prix) // Si input est inférieur au juste prix
   {
-    switch (new Date().getDay())
-    {
-        case (input > juste_prix) :
-            day = "Sunday";
-            break;
-        case (input < juste_prix):
-            day = "Monday";
-            break;
-        case (input == juste_prix):
-            day = "Tuesday";
-    }
+    console.log (input);
+    message = "C'est moins !"; // on redéfinit la valeur de la variable message
+    alert (message);
+    input = prompt("Entrez un chiffre de 20 à 80");
+    devine();
+  }===
+  else if (input < juste_prix) // Si input est supérieur au juste prix
+  {
+    console.log (input);
+    message = "C'est plus !"; // on redéfinit la valeur de la variable message
+    alert (message);
+    input = prompt("Entrez un chiffre de 20 à 80");
+    devine();
   }
+  else if (input == juste_prix)// Si input est égale au juste prix (le juste prix est trouvé, l'utilisateur à gagné !)
+  {
+    console.log (input);
+    console.log ("gagné !");
+    message = "C'est juste tu as trouvé en " + nb_essai + " coups !";// on redéfinit la valeur de la variable message
+    alert (message);//on affiche le message gagné à l'utilisateur
+      function rejoue()
+      {
+        let replay = window.confirm("Voulez-vous rejouer ?");
 
-  // if (input > juste_prix) // Si input est inférieur au juste prix
-  // {
-  //   console.log (input);
-  //   message = "C'est moins !"; // on redéfinit la valeur de la variable message
-  //   alert (message);
-  //   input = prompt("Entrez un chiffre de 20 à 80");
-  //   devine();
-  // }
-  // else if (input < juste_prix) // Si input est supérieur au juste prix
-  // {
-  //   console.log (input);
-  //   message = "C'est plus !"; // on redéfinit la valeur de la variable message
-  //   alert (message);
-  //   input = prompt("Entrez un chiffre de 20 à 80");
-  //   devine();
-  // }
-  // else if (input == juste_prix)// Si input est égale au juste prix (le juste prix est trouvé, l'utilisateur à gagné !)
-  // {
-  //   console.log (input);
-  //   console.log ("gagné !");
-  //   message = "C'est juste tu as trouvé en " + nb_essai + " coups !";// on redéfinit la valeur de la variable message
-  //   alert (message);//on affiche le message gagné à l'utilisateur
-  //   function rejoue()
-  //   {
-  //     let replay = window.confirm("Voulez-vous rejouer ?");
-  //
-  //     if (replay == true)
-  //     {
-  //       console.log ("true - rejoue");
-  //       nb_essai= 0;
-  //       rand_nb();
-  //       input = prompt("Entrez un chiffre de 20 à 80");
-  //       devine();
-  //     }
-  //     else
-  //     {
-  //       console.log ("false - au revoir");
-  //       alert ("A bientôt !");
-  //     }
-  //   }
-  //   rejoue();
-  // }
+          if (replay == true)
+          {
+            console.log ("true - rejoue");
+            nb_essai= 0;
+            rand_nb();
+            input = prompt("Entrez un chiffre de 20 à 80");
+            devine();
+          }
+          else
+          {
+            console.log ("false - au revoir");
+            alert ("A bientôt !");
+          }
+      }
+    rejoue();
+  }
 };
 
 devine();// on appelle la fonction devine

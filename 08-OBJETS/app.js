@@ -347,11 +347,11 @@ character.bataille();
 // var Sword = new Banana("Sword", 40, 0, 10);
 // var Bow = new Banana("Bow", 10, 10, 10);
 // var Shotgun = new Banana("Shotgun", 999, 0, 95);
-
-
-
+//
+//
+//
 // Autre exemple de constructeur
-
+//
 // class mainCharacter {
 //   constructor(name, level, life) {
 //     this.name = name;

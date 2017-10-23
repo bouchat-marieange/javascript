@@ -713,6 +713,51 @@ On utilise le numéro de l'index pour modifier une valeur dans un tableau
 delete myObj.cars[1];
 ```
 
+#### Créer un constructeur pour générer facilement plusieurs objets qui ont les même propriétés
+Créer un constructeur pour générer facilement plusieurs objets qui ont les même propriétés
+
+```javascript
+class Banana {
+  constructor(title, physic, magic, minLevel) {
+    this.title = title;
+    this.physic = physic;
+    this.magic = magic;
+    this.minLevel = minLevel;
+    this.Available = function Available(UserLevel) {
+      if (UserLevel >= minLevel) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}
+
+
+var Sword = new Banana("Sword", 40, 0, 10);
+var Bow = new Banana("Bow", 10, 10, 10);
+var Shotgun = new Banana("Shotgun", 999, 0, 95);
+```
+
+
+#### Autre exemple de constructeur
+
+```javascript
+class mainCharacter {
+  constructor(name, level, life) {
+    this.name = name;
+    this.level = level;
+    this.life = life;
+    this.weapon = Sword.title;
+    this.weaponAttack = Sword.physic;
+    this.attack = function attack() {
+      var dammage = this.level * this.weaponAttack;
+      console.log(this.name + " did " + dammage + " dammage with a " + this.weapon);
+    }
+
+let a = new mainCharacter("ste", 10, 200);
+```
+
 ### JSON.parse()
 
 Un usage courant de JSON est d'échanger des données avec un serveur web.

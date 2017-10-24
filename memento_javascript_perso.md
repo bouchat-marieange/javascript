@@ -957,6 +957,64 @@ elementParent.removeChild(noeud);
 	* La manipulation de l'arbre DOM (createElement, apprendChild, ...)
 
 
+### Résumé DOM
 
+#### Obtenir un élément (selectionner)
 
+```javascript
+var bodyElement = document.body; // selection la plus simple du body
+var bodyElement = document.querySelector('body'); // selection par selecteur css - renvoie uniquement le premier élement de cette class
+var bodyElement = document.children[0].children[1]; // enfant de personne [0] et contient tout [1]
+var bodyElement = document.getElementsByTagName('body')[0]; // retourne la liste des élément portant le nom de la balise donné (div, h1, ul, ect...)
+var bodyElement = document.querySelectorAll("body")[0];
+var premier_paragraphe = document.getElementById("first-paragraph");
+var All_bg_silver = document.querySelectorAll(".bg-silver"); //selectionner tout les éléments qui ont la class "bg-silver"
+var ma_table = document.querySelector("#my-table"); // Selectionner le premier élément qui à l'id my-table
+var All_bg_silver = document.querySelectorAll("#my-table"); //Selectionner tout les élément qui on l'id my-table
 
+```
+
+#### Ajouter une classe à un élément
+
+```javascript
+var premier_paragraphe = document.getElementById("first-paragraph");
+premier_paragraphe.classList.add("aqua");
+```
+
+```javascript
+All_bg_silver = document.getElementsByTagName("blockquote")[0].classList.add("bg-teal");
+```
+
+```javascript
+firstParagraphe = document.getElementById("first-paragraph").setAttribute("class", "aqua");
+```
+
+#### Retirer une classe à un élément
+
+```javascript
+var premier_paragraphe = document.getElementById("first-paragraph");
+premier_paragraphe.classList.remove("bg-lime","gray");
+```
+
+```javascript
+All_bg_silver = document.getElementsByTagName("blockquote")[0].classList.remove("bg-silver");
+```
+```javascript
+Bgsilver = document.getElementsByTagName("blockquote")[0].removeAttribute("class", "bg-silver");
+```
+
+#### Faire boucle pour ajouter ou retirer une class à une série d'élément renvoyée par querySelectorAll (la classe doit être ajouter ou retirer à chaque élément un par un grâce à une boucle
+
+```javascript
+for (i = 0; i < longueur; i++)
+{
+  var all_paragraphe = document.querySelectorAll("p")[i].setAttribute("class", "shadow");
+}
+```
+
+```javascript
+for (i = 0; i < longueur; i++)
+{
+  var all_paragraphe = document.querySelectorAll("p")[i].removeAttribute("class", "shadow");
+}
+```

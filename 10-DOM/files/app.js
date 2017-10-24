@@ -62,4 +62,12 @@ ma_table = document.querySelector("#my-table").setAttribute("class", "bg-purple"
 var all_paragraph = document.querySelectorAll("p");
 console.log(all_paragraph);
 
-// modifier tout ces éléments en leurs ajoutant la classe 'shadow'
+
+// modifier tout ces éléments en leurs ajoutant la classe 'shadow'. boucle pour selectionner chaque élement de la Nodelist séparément pour leut ajouter la class shadow
+longueur = all_paragraph.length;
+for (i = 0; i < longueur; i++)
+{
+  var all_paragraphe = document.querySelectorAll("p")[i].setAttribute("class", "shadow");
+}
+// la methode querySelectorAll var renvoyer plusieurs éléments dans une liste qui ressemble à un tableau. Le premier élément correspondra à l'indice 0, le second à l'indice 2, etc....
+// Pour appliquer la classe "shadow à chacun des éléments qui doit être selectionner séparément, il faut faire une boucle en incrémentant chaque fois la valeur de l'index comme lorsque l'on boucle sur un tableau"

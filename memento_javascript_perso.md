@@ -1107,16 +1107,306 @@ car.model = "P1";
 #### Ressources
 
 http://www.generatedata.com/#t1
+
+
 https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array
 
 #### Array
 
 L'objet Array est utilisé pour créer des tableaux. Les tableaux sont des objets de haut-niveau (en terme de complexité homme-machine) semblables à des listes
 
-Syntaxe
+##### Syntaxe
 
 ```javascript
-car.model = "P1";
+[element0, element1, ..., elementN]
+new Array(element0, element1[, ...[, elementN]])
+new Array(arrayLength)
 ```
+
+##### Paramètres
+
+element0, element1, ..., elementN
+
+Un tableau est initialisé avec les éléments donnés, sauf dans le cas où un argument seul est passé au constructeur Array et que l'argument est un nombre (voir ci-après) . Ce cas spécial s'applique aux tableau créés avec le constructeur Array, pas avec les tableaux créés avec des littéraux qui utilisent les crochets.
+
+arrayLength
+
+Si le seul argument passé au constructeur Array est un entier entre 0 et 2³²-1 (inclus), un nouveau tableau sera créé avec ce nombre d'éléments (note: le tableau sera créé avec des éléments vides, il ne sera ps créé avec autant d'éléments qui valent undefined). Si l'argument est un autre nombre, une exception RangeError sera levée.
+
+##### Description
+
+Les tableaux JavaScript sont des objets semblables à une liste et possèdent plusieurs méthodes incorporées pour exécuter des oéparations de parcours et de modification.
+Ni la taille d'un tableau ni les types de ses éléments n'est fixé
+Puisque la dimension  d'un tableau peut augmenter ou diminuer à tout moement, les tableaux ne sont pas garantis d'être compacs. (Si nécessaire compacité, envisage utiliser tableaux typés)
+
+On ne devrait pas considéré un tableau comme un tableau associatif. On peut utiliser des objets classiques à la place pour obtenir ce comportements (cette approche est plus pertinente même si elle a également ses inconvénients).
+
+Attention en Javascript: foo["bar"] est la même chose que foo.bar. Un for ..in bouclera sur les propriété d'un objet.
+
+Si on utilise des clés qui sont des chaînes de caracètres, on aura d'une part les éléments du tableaux (indexés avec des numéros) et d'autre part, un ensemble de propriétés qu ne seront pas utilisées das le opérations de parcours du tableau.
+
+##### Accéder aux éléments d'un tableau
+
+L'indice des tableaux commence à 0 (le premier élément d'un tableau à un indice de 0)et la position du dernier élément est donnée par length moins 1.
+
+```javascript
+var arr = ["le premier élément", "le second élément"];  
+console.log(arr[0]);             // affiche "le premier élément"    
+console.log(arr[1]);             // affiche "le second élément"  
+console.log(arr[arr.length - 1]);// affiche "le second élément"
+```
+
+Les éléments d'un tableau sont simplement des propriétés d'objets. 
+
+Attention en Javascript: foo["bar"] est la même chose que foo.bar. Un for ..in bouclera sur les propriété d'un objet.
+
+Cependant le code suivant renverra une erreu car le nom de la propriété utilisé est invalide
+
+```javascript
+console.log(arr.0); // erreur de syntaxe
+```
+
+Ce comportement est tout à fait normal. Il n'est pas possible d'accéder aux propriétés dont le nom commence par un chiffre avec cette notation (le point). Il est nécessaire d'uilitser la syntaxe avec les crochets pour accéder à ces propriétés.Ainsi pour faire référence dont la propriété est nommée "3d" (commence par un chiffre), on ne pourra y faire référence qu'en utilisant les crochets.
+
+```javascript
+var années = [1950, 1960, 1970, 1980, 1990, 2000, 2010];
+// erreur de syntaxe
+console.log(années.0);
+
+// fonctionne correctement
+console.log(années[0]);
+```
+
+```javascript
+renderer.3d.setTexture(model, "personnage.png");   // erreur de syntaxe
+renderer["3d"].setTexture(model, "personnage.png");// fonctionne correctement
+```
+
+Dans cet exemple, on utilise les doubles quotes autour de 3d. On peut aussi utiliser les doubles quotes pour accéder aux éléments d'un tableau (ex: années["2"] au lieu de années[2], mais ce n'est pas obligatoire.
+Dans l'instruction années[2], le nombresera converti en une chaîne de caractère par le moteur JavaScript. Pour cette raison, si on utilise les noms de propriétés "2" et "02", on fera référence à deux propriétés différentes, le fragment de code suivant renvoie donc true.
+
+```javascript
+console.log(années["2"] != années["02"]);   // années["2"] est différent de années["02"]
+```
+
+De la même façon les propriétés nommées avec des mots-clés réservés ne peuvent être consultées qu'en utilisant la syntaxe avec crochets. 
+
+```javascript
+var promise = {
+  'var' : 'text',
+  'array': [1, 2, 3, 4]
+};
+
+```
+console.log(promise['var']);// des mot comme var sont interprété par JavaScript comme variable et non comme une propriété à laquelle on aurait donné un nom que l'on aurait choisi.
+```
+
+Remarque : Depuis Firefox 40.0a2, il est possible d'utiliser la notation avec le point pour accéder aux propriétés dont les noms ne sont aps des identifiants valides.
+
+
+##### Relation entre length et les propriétés numériques
+
+La propriété length d'un tableau est liée aux propriétés numériques du tableau.Lorsqu'elles sont utilisées, plusieurs méthodes natives utilisent cette propriété : join, slice, indexOf, etc...
+
+D'autres méthodes comme push et splice modifient le tableau et la propriété length.
+
+```javascript
+var fruits = [];  
+fruits.push("banane", "pomme", "pêche");  
+      
+console.log(fruits.length); // 3
+```
+
+Lorsqu'on définit une nouvelle propriété numérique pour un tableau, que l'index utilisé est valide et que celui-ci est dehors des limites actuelles du tableau, le moteur JavaScript mettra à jour la propriété length
+
+```javascript
+fruits[5] = "mangue";  
+console.log(fruits[5]);  // "mangue"
+console.log(Object.keys(fruits)); // ['0', '1', '2', '5'] 
+console.log(fruits.length); // 6
+```
+
+On peut également modifier la propriété directement (cela n'ajoutera pas de nouveaux éléments):
+
+```javascript
+fruits.length = 10;  
+console.log(Object.keys(fruits)); // ['0', '1', '2', '5']         
+console.log(fruits.length);  // 10
+```
+
+Attention si on diminue la valeur de length, cela supprimera des éléments:
+
+```javascript
+console.log(Object.keys(fruits)); // ['0', '1', '2', '5']
+fruits.length = 2;
+console.log(Object.keys(fruits)); // ['0', '1']
+console.log(fruits.length); // 2
+```
+
+##### Création d'un tableau utilisant le résultat d'un correspondance
+
+Le résultat d'une correspondance entre une expression rationnelle et une chaîne peut créer un tableau. Ce tableau posssède des propriétés et des éléments qui fournissent des informations sur cette correspondance. Il est possible d'obtenir un tableau grâce aux méthodes RegExp.prototype.exec, String.match, et String£.replace. Pour mieux comprendre le fonctionnement de ces propriétés et de ces éléments, on pourra utiliser l'exemple et le tableau qui suivent:
+
+```javascript
+var maRegexp = /d(b+)(d)/i;
+var monTableau = maRegexp.exec("cdbBdbsbz");
+```
+
+Les propriétés et les éléments retournés depuis cette correspondance sont les suivants:
+
+
+Propriété/Element: input	
+
+Description: Une propriété en lecture seule qui reflète la chaîne originale sur laquelle l'expression rationnelle a été appliquée.
+
+Exemple: cdbBdbsbz
+
+
+
+Propriété/Element: index	
+
+Description: Une propriété en lecture seule qui est l'indice de la correspondance dans la chaîne (les indices commencent à 0)
+
+Exemple: 1
+
+
+Propriété/Element: [0]	
+
+Description: Une propriété en lecture seule qui spécifie les derniers caractères correspondants.
+
+Exemple: dbBd
+
+
+
+Propriété/Element: [1], ...[n]
+
+Description: Des éléments en lecture seul qui spécifient les correspondances de chaînes entre parenthèse, s'ils sont inclus dans une expression régulière. Le nombre de chaînes possibles est illimité.
+
+Exemple: 
+
+[1]: bB
+
+[2]: d
+
+
+#### Propriétés
+
+
+**Array.length**
+
+La propriété de longueur pour le constructeur Array, elle vaut 1.
+
+
+
+**get Array[@@species]**
+
+La fonction de construction utilisée pour créer les objets dérivés.
+
+
+
+**Array.prototype**
+
+Cette propriété permet d'ajouter des propriétés à tous les tableaux.
+
+
+#### Méthodes
+
+
+**Array.from()**
+
+Cette méthode permet de créer une nouvelle instance d'Array à partir d'un objet semblable à un tableau ou d'un itérable.
+
+
+
+**Array.isArray()**
+
+Cette méthode renvoie true si la variable est un tableau, false sinon.
+
+
+
+**Array.of()**
+
+Cette mtéhode permet de créer une nouvelle instance d'Array à partir d'un nombre variable d'arguments (peu importe la quantité ou le type des arguments utilsés).
+
+
+#### Instances d'Array
+
+Toutes les instances d'Array héritent de Array.prototype. Le prototype du constructeur Array peut être modifié afin d'affecter l'ensemble des instances grâce à l'héritage.
+
+* Les propriétés
+* Les Méthodes
+
+
+##### Les mutateurs
+
+Ces méthodes modifient le tableau:
+
+
+**Array.prototype.copyWithin()**
+
+Cette méthode copie une série d'éléments de tableau dans le tableau.
+
+
+**Array.prototype.fill()**
+
+Cette méthode remplie tous les éléments d'un tableau avec une même valeur, éventuellement entre un indice de début et un indice de fin.
+
+
+**Array.prototype.pop()**
+
+Cette méthode supprime le dernier élément d'un tableau et retourne cet élément.
+
+
+**Array.prototype.push()**
+
+Cette méthode ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle longueur du tableau.
+
+
+**Array.prototype.reverse()**
+
+Cette méthode renverse l'ordre des éléments d'un tableau - le premier élément devient le dernier, et le dernier devient le premier. Le tableau est modifié par cette méthode.
+
+
+**Array.prototype.shift()**
+
+Cette méthode supprime le premier élément d'un tableau et retourne cet élément.
+
+
+**Array.prototype.sort()**
+
+Cette méthode trie en place les éléments d'un tableau et retourne le tableau.
+
+
+**Array.prototype.splice()**
+
+Cette méthode permet d'ajouter ou de retirer des éléments d'un tableau.
+
+
+**Array.prototype.unshift()**
+
+Cette méthode permet d'ajouter un ou plusieurs éléments au début d'un tableau et renvoie la nouvelle longueur du tableau.
+
+
+##### Les accesseurs
+
+Ces méthodes ne modifient pas l'état du tableau et en retournent une représentation.
+
+**A**
+
+Texte
+
+
+**A**
+
+Texte
+
+
+**A**
+
+Texte
+
+
+
+
 
 

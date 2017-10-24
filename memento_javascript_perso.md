@@ -1391,21 +1391,53 @@ Cette méthode permet d'ajouter un ou plusieurs éléments au début d'un tablea
 
 Ces méthodes ne modifient pas l'état du tableau et en retournent une représentation.
 
-**A**
+**Array.prototype.concat()**
 
-Texte
-
-
-**A**
-
-Texte
+Cette méthode renvoie un nouveau tableau constitué de ce tableau concaténé avec un ou plusieurs autre(s) tableau(x) et/ou valeur(s).
 
 
-**A**
+**Array.prototype.includes()**
 
-Texte
+Cette méthode détermine si le tableau contient ou non un certain élément. Elle renvoie true ou false selon le cas de figure.
 
 
+**Array.prototype.indexOf()**
+
+Cette méthode retourne le premier (plus petit) index d'un élément égal à la valeur passée en paramètre à l'intérieur du tableau, ou -1 si aucun n'a été trouvé.
+
+**Array.prototype.join()**
+
+Cette méthode concatène tous les éléments d'un tableau en une chaîne de caractère.
+
+
+**Array.prototype.lastIndexOf()**
+
+Cette méthode retourne le dernier (plus grand) index d'un élément égal à la valeur passée en paramètre à l'intérieur du tableau, ou -1 si aucun n'a été trouvé.
+
+
+**Array.prototype.slice()**
+
+Cette méthode extrait une portion d'un tableau pour retourner un nouveau tableau constitué de ces éléments.
+
+
+**Array.prototype.toSource()**
+
+Cette méthode renvoie la représentation littérale du tableau spécifié ; vous pouvez utiliser cette valeur pour créer un nouveau tableau. Elle surcharge la méthode Object.prototype.toSource().
+
+
+**Array.prototype.toString()**
+
+Cette méthode renvoie une chaîne de caractères représentant le tableau et ses éléments. Elle surcharge la méthode Object.prototype.toString().
+
+
+**Array.prototype.toLocaleString()**
+
+Cette méthode retourne une chaîne de caractères représentant le tableau et ses éléments en tenant compte de la locale. Elle surcharge la méthode Object.prototype.toLocaleString().
+
+
+##### Les méthodes d'itération
+
+Attention : Ces méthodes génériques ne sont pas standard. Elles sont dépréciées et seront retirées dans un avenir proche. Celles-ci ne peuvent être utilisées sur tous les navigateurs. Toutefois, il existe un shim disponible sur GitHub.
 
 
 

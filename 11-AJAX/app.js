@@ -10,6 +10,13 @@
 // 6. afficher le plus grand score dans la console tip : sort()
 // 7. afficher le plus petit score tip : sort()
 
+// Ressources :
+//
+// generate data
+// XMLHttpRequest
+// you might not need jquery
+// Array methods
+
 //Code
 
 // 1. charger le fichier "data.json" tip : xmlHttpRequest

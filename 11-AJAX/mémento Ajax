@@ -162,8 +162,177 @@ L'utilisation de l'objet XHR (abréviation courante de XMLHttpRequest) se fait e
 
 ### Préparation et envoi de la requête
 
+Pour commencer notre requête, il faut d'abord instancier un objet XHR (instancier = initialiser à partir d'un espace mémoire réservé, un objet à partir d'un ensemble de caractéristiques applé class - fabriquer un élément à partir d'un modèle)
+
+````javascript
+var xhr = new XMLHttpRequest();
+````
+
+La préparation de la requête se fait par le biais de la méthode open(), qui prend en paramètres 5 arguments différents, dont 3 facultatifs:
+
+* Le premier argument contient la méthode d'envoi des données, les trois méthode principales sont GET,POST et HEAD
+* Le deuxième argument est l'URL à laquelle vous souhaitez soumettre votre requête, par exemple  'http://mon_site_web.com'
+* Le troisième argument est un booléen facultatif dont la valeur par défaut est true.
+A true, la requête est de type asynchrone, à false la requête est de type synchrone (cfr explications plus bas)
+* Les deux derniers arguments sont à spécifier en cas d'indentification nécessaires sur le site Web (à cause d'un .htaccess par exemple. Le premier contient le nom d'utilisateur, tandis que le deuxième contient le mot de passe.
+
+Voici une utilisation basique et courante de la méthode open():
+
+````javascript
+xhr.open('GET', 'http://mon_site_web.com/ajax.php');
+````
+
+Cette ligne de code prépare une requête afin que cette dernière contacte la page ajax.php sur le nom de domaine mon_site_web.com par le biais du protocole http (on peut aussi utiliser d'autres protocoles comme HTTPS ou FTP par exemple). Tout paramètre spécifié à la requête sera transmis par le biais de al méthode GET (via l'adresse url du site).
+
+Après préparation de la requête, il ne reste plus qu'à l'envoyer avec la méthode send() qui prend en paramètre un argument obligatoire (étudier plus tard). Dans l'immédiat, nous lui spécifions la valeur null:
+
+````javascript
+xhr.send(null);
+````
+
+Après exécution de cette méthode, l'envoi de la requête commence. Cependant nous n'avons spécifié aucun paramètre ni aucune solution pour vérifier le retour des données, l'intérêt est donc quasi nul.
 
 
+**Pour interrompre une requête qui prend trop de temps**
 
+Si vous travaillez avec des requêtes asynchrones (ce que vous ferez dans 99% des cas), sachez qu'il existe une méthode abort() permettant de stopper toute activité. La connexion au serveur est alors interrompue et votre instance de l'objet XHR est remise à zéro. Son utilisation est très rare, mais elle peut servir si vous avez des requêtes qui prennent bien trop de temps.
+
+
+### Synchrone ou asynchrone?
+
+Une requête synchrone va bloquer votre script tant que la réponse n'aura pas été obtenue, tandis qu'une requête asynchrone laissera continuer l'exécution de votre script et vous préviendra de l'obtention de la réponse par le biais d'un événement.
+
+La solution la plus intéressante est la requête asychrone. Il est très rare d'avoir besoin que votre script reste inactif simplement parce qu'il attend une réponse à une requête. Une requête asynchrone vous permet de gérer votre interfacependant que vous attendez la réponse du serveur, vous pouvez donc indiquer au client de patienter ou vous occuper d'autres tâches en attendant.
+
+
+### GET, POST et HEAD
+
+**Get**
+
+Méthode d'envoi. Ajoute des données à l'URL pour les faire transiter vers une autre page (taille limitée à environ 2000 caractères), si on exécute le bouton retour, les requêtes GET sont exécutées à nouveau.
+
+**Post** 
+
+Méthode d'envoi.Envoi un en-tête est un corps de message au serveur. Pas de taille limite. Les données n'apparaissent pas dans l'URL. Il n'est pas possible de récupéer directement les données en javascript ,il faut ajouter du code PHP dans la page.
+
+**Head**
+
+Méthode d'envoi et de réception. En spécifiant cette méthode on recoit non pas le contenu du fichier dont on a spécifié l'URL mais jsute son en-tête (son header, donc HEAD). Cette utilisation est très pratique quand on souhaite simplement vérifier l'existence d'un fichier sur le serveur.
+
+
+Lorsque l'on utilise la méthode GET, la transmission de ces paramètres se fait de la même manière qu'avec une URL classique, il faut les spécifier avec les caractères ? et & dans l'URL que vous passer à la méthode open()
+
+````javascript
+xhr.open('GET', 'http://mon_site_web.com/ajax.php?param1=valeur1&param2=valeur2');
+````
+
+Il est conseillé avec la méthode GET ou POST d'encoder toutes les valeurs que vous passer en paramètre grâce à la fonction encodeURIComponent(), afin d'éviter d'écrire d'éventuels caractères interdits dans une URL.
+
+````javascript
+var value1 = encodeURIComponent(value1),
+    value2 = encodeURIComponent(value2);
+
+xhr.open('GET', 'http://mon_site_web.com/ajax.php?param1=' + value1 + '&param2=' + value2);
+````
+
+Votre requête est maintenant prête à envoyer des paramètres par le biais de la méthode GET.
+
+Avec la méthode POST, les paramètres ne sont pas à spécifier avec la méthode open() mais avec la méthode send()
+
+````javascript
+xhr.open('POST', 'http://mon_site_web.com/ajax.php');
+xhr.send('param1=' + value1 + '&param2=' + value2);
+````
+
+Cependant la méthode POST consiste généralement à envoyer des valeurs contenues dans un formulaire, il faut donc modifier les en-têtes d'envoi des données afin de préciser qu'il s'agit de données provenant d'un formulaire (même si, à la base, ce n'est pas le cas)
+
+````javascript
+xhr.open('POST', 'http://mon_site_web.com/ajax.php');
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.send('param1=' + value1 + '&param2=' + value2);
+````
+
+La méthode seRequestHeader() permet l'ajout ou la modification d'un en-tête, elle prende en paramètres deux arguments: l'en-tête concerné et la valeur à lui attribuer.
+
+
+### Réception des données
+
+La réception des données d'une requête se fait par le biais de nombreuses propriétés qui diffèrent selon que la requête est synchrone ou non.
+
+#### Requêteasynchrone: spécifier la fonction de callback
+
+Dans le cas d'une requête asynchrone, il nous faut spécifier une fonction de callback afin de savoir quand la requête s'est terminée. Pour cela, l'objet XHR possède un évènement nommé readystatechange auquel il suffit d'attribuer une fonction
+
+````javascript
+xhr.addEventListener('readystatechange', function() {
+    // Votre code…
+});
+````
+
+Cependant, cet évènement ne se déclenche pas seulement lorsque la requête est terminée, mais plutôt, comme son nom l'indique à chaque changement d'état. Il existe 5 états différents représentés par des constantes spécifiques à l'objet XMLHttpRequest
+
+Constante: UNSENT
+Valeur:0
+Description: L'objet XHR a été créé, mais pas initialisé (la méthode open() n'a pas encore été appelée).
+
+Constante:OPENED
+Valeur:1
+Description: La méthode open() a été appelée, mais la requête n'a pas encore été envoyée par la méthode send().
+
+Constante:HEADERS_RECEIVED
+Valeur:2
+Description: La méthode send() a été appelée et toutes les informations ont été envoyées au serveur.
+
+Constante:LOADING
+Valeur:3
+Description: Le serveur traite les informations et a commencé à renvoyer les données. Tous les en-têtes des fichiers ont été reçus.
+
+Constante:DONE
+Valeur:4
+Description: Toutes les données ont été réceptionnées.
+
+
+L'utilisation de la propriété readyState est nécessaire pour connaître l'état de la requête. L'état qui nous intéresse est le cinquième (la constante DONE), car nous voulons simplement savoir quand notre requête est terminée. 
+
+Il existe deux manière pour vérifier que la propriété readyState contient bien une valeur indiquant que la requête est terminée, la première (que nous utiliserons pour une question de lisibilité) consiste à utiliser la constante elle-même.
+
+
+````javascript
+xhr.addEventListener('readystatechange', function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) { // La constante DONE appartient à l'objet XMLHttpRequest, elle n'est pas globale
+        // Votre code…
+    }
+});
+````
+
+La seconde manière de faire consiste à utiliser directement la valeur de la constante, soit 4 pour la constante DONE:
+
+````javascript
+xhr.addEventListener('readystatechange', function() {
+    if (xhr.readyState === 4) {
+        // Votre code…
+    }
+});
+````
+
+De cette manière notre code ne s'éxécutera que lorsque la requête aura terminé son travail.Toutefois, même si la requête à terminé son travail, cela ne veut pas forcément dire qu'elle l'a mené à bien. Pour le vérifier nous utiliserons le statut de la requête grâce à la propriété status. Cette dernière renvoie le code correspondant à son statut, (ex: 404 pour les fichiers non trouvé).Le statut qui nous intéresse est le 200 qui signifie que tout s'est bien passé.
+
+````javascript
+xhr.addEventListener('readystatechange', function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Votre code…
+    }
+});
+````
+
+A noter qu'il existe aussi une propriété nommée statusText contenant une version au format text du statut de la requête, en anglais seulement. Par exemple, le statut 404 donnera le texte suivant: "Not Found"
+
+Remarque: 
+
+Si vous souhaitez tester votre requête XHR sur votre ordinateur sans même utiliser de serveur de test (WampServer par exemple), alors vous n'obtiendrez jamais de statut équivalent à 200 puisque c'est normalement le rôle du serveur HTTP (Apache par exemple, fourni avec WampServer) de fournir cette valeur. Vérifiez alors si le statut équivaut à 0, cela suffira.
+
+Nous avons traité ici une requête asychrone mais pour une requête synchrone, il n'y a qu'à vérifier le statut de votre requête, tout simplement.
+
+### sTraitement des données
 
 

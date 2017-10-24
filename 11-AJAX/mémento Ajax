@@ -1,0 +1,35 @@
+# Ajax
+
+AJAX = Asynchronous JavaScript and XML
+en français JavaScript et XML asynchrones
+
+## Ajax, ça sert à quoi?
+
+Ensemble de technologies destinées à réaliser de rapides mises à jour du contenu d'une page Web sans nécessiter de rechargement visible par l'utilisateur.
+
+Les technologies employées sont diverses et varie selon le type de requête que l'on utilise, mais en général le JavaScript est toujours présent.
+
+Les langages HTML et CSS sont également pris en compte pour l'affichage mais ceux-ci ne sont pas inclus dans le processus de communication. 
+
+Le transfert de données est géré exclusivement par le JavaScript et utilise différentes technologies de formatage de données comme le XML oue le JSON.
+
+Application concrète
+
+Dans champ de recherche d'un site, l'usage de l'auto-complétion (qui permet d'afficher la liste des mots qui commencent par les lettres que vous avez déja tapé. Ce système requiert l'AJAX qui demande au serveur de chercher les mots correspondant à la recherche et ce sans recharger la page, car sinon les caractères entrés seraient perdus.
+
+La sauvegarde automatique à intervalles réguliers pour les textes en cours d'écriture sur les news, forums, etc... La sauvegarde doit se faire de manière transparente sans géner le rédacteur et sans nécessiter le rechargement de la page. Ajax se charge donc d'envoyer à intervalle régulier le texte encoder au serveur sans géner le rédacteur.
+
+Dans ces deux cas, les requêtes contiennent juste les données à faire transiter et rien de plus. C'est tout l'intérêt de l'AJAX, car il permet de requêtes rapides car les requêtes sont précise et Ajax ne va pas recevoir la page complète mais seulement la partie concernée par la requếte formatée de manière à pouvoir l'analyser facilement.
+
+
+## Les formats de données
+
+L'ajax étant un ensemble de technologies effectuant des transferts de données, il faut structurer ces données. Il existe de nombreux formats pour transférer des données, voici les 4 principaux:
+
+* Le format texte : le plus simple, aucune structure prédéfinie, sert essentiellement à transmettre une phrase à afficher à l'utilisateur, comme un message d'erreur ou autre. Bref, c'est une chaîne de caractère.
+
+* Le HTML : permet transfert facile des données. Généralement il achemine des données qui sont déja formatées par le serveur puis affiché directement dans la page sans aucun traitement préalable de JavaScript.
+
+* XML : acronyme de eXtensible Markup Language . Format de données proche du HTML. Il permet de stockere les données dans un language de balisage semblable au HTML. Très pratique pour stocker de nombreuses données ayant besoin d'être formatées et fournit moyen simple d'y accéder.
+
+* JSON : JavaScript Objet Notation . Le plus courant. Il a pour particularité de segmenter les données dans un objet JavaScript. Très avantageux pour les petits transfert de données segmentées et de plsu en plus utilisé dans de très nombreux langages.

@@ -1035,6 +1035,21 @@ req.open('get', 'myfile.txt', true);
 req.send();
 ```
 
+### Utiliser XMLHttpRequest
+
+Pour envoyer une requête HTTP, créez un objet XMLHttpRequest, ouvrez une URL et envoyez la demande. Une fois la transaction terminée, l'objet contiendra des informations utiles, telles que le corps de la réponse et l'état HTTP du résultat. 
+
+```javascript
+function reqListener () {
+  console.log(this.responseText);
+}
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "http://www.example.org/example.txt");
+oReq.send();
+```
+
 
 Etape 1 :  On créer une nouvelle demande de XMLHttpRequest en l'appellant comme une fonction, elle retourne un objet qu'on enregistre dans une variable.
 
@@ -1438,6 +1453,10 @@ Cette méthode retourne une chaîne de caractères représentant le tableau et s
 ##### Les méthodes d'itération
 
 Attention : Ces méthodes génériques ne sont pas standard. Elles sont dépréciées et seront retirées dans un avenir proche. Celles-ci ne peuvent être utilisées sur tous les navigateurs. Toutefois, il existe un shim disponible sur GitHub.
+
+
+
+
 
 
 

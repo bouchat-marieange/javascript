@@ -1018,3 +1018,105 @@ for (i = 0; i < longueur; i++)
   var all_paragraphe = document.querySelectorAll("p")[i].removeAttribute("class", "shadow");
 }
 ```
+
+
+## AJAX
+
+But - par exemple : charger de nouveaux contenu dans une page web sans rechargement complet de cette page.
+Pour ajouter du contenu dans une page (par exemple de nouveaux articles sur une page a défilement infini ou pour informer de nouveaux mails) on doit faire une requête HTTP XML (XHR). Les applications Web qui fot cela sont aussi appelés "applications AJAX" (AJAX = Asynchronous JavaScript and XML. Presque tous les sites qui ajoutent du nouveau contenu sans rechargement de la page (ex: facebook, gmail, google maps, etc...) utilisent la même technique. Ce sont les développeurs de Microsoft Outlook Web Access qui ont initialment créé le WMLHTttpRequest.
+
+
+### Requête HTTP XML
+
+```javascript
+var req = new XMLHttpRequest();
+req.onload = function (event) {...};
+req.open('get', 'myfile.txt', true);
+req.send();
+```
+
+
+Etape 1 :  On créer une nouvelle demande de XMLHttpRequest en l'appellant comme une fonction, elle retourne un objet qu'on enregistre dans une variable.
+
+```javascript
+var req = new XMLHttpRequest();
+```
+
+Etape 2 : On spécifie une fonction de callback, à appeller lorsque les données sont chargées. Les informations de l'évènement sont transmises comme premier argument de la fonction
+
+```javascript
+req.onload = function (event) {...};
+```
+
+Etape 3 : On spécifie comment obtenir les données que nous voulons en utilisant req.open. Le premier argument de la méthode HTTP (GET, POST, PUT, etc...) et ensuite vient l'URL pur aller chercher le fichier. Le troisième argument est un booléen indiquant si la demande est asynchrone. Le paramètre par defaut est false.
+
+
+Dans le cas ou la rêquête n'est pas asynchrone (elle est donc synchrone), l'exécution du code s'arrête à cette ligne jusqu'à ce que les données soient récupérées. Les requête synchrones ne sont pas souvent utilisées étant donné qu'une demande à un serveur peut prendre une éternité. Le navigateur ne fera donc rien pendant durant une longue période.
+
+Etape 4 : Sur la dernière ligne nous envoyons la requête au navigateur pour enclencher la demande de données.
+
+L'utilisation d'un XMLHttpRequest permet de charger HTMK, JSON, XML et du texte brut sur HTTP et HTTPS. Il prend également en charge d'autres protocoles tels que FTP. Ces requêtes sont très utiles dans le développement d'applications JavaScript. 
+
+Cette méthode a été fortement développée à tel point que toutes les applications l'utilisent actuellement. Des bibliothèques et de frameworks ont aussi été construits pour aider à faciliter leur utilisation.
+
+#### JSON
+
+Le JSOn (JavaScript Object Notation) n'est pas du JavaScript. Officiellement c'est un language totalement différent avec ses propres spécificités . Il est néanmoins une partie importante du JavaScript. JSON est un ensemble de règles de formatage de texte pour stocker et transférer des données dans une machine de façon lisible.Il ressemble beaucoup à la syntaxe d'un objet en JavaScript. 
+
+Exemple JSONs
+
+```JSON
+{
+    "name": "Yoda",
+    "age": 894,
+    "lightsaber": {"color": "vert"}
+}
+```
+
+Comme dans JavaScript, on utilise les accolades. L'exemple ci-dessus est valable en JavaScript. 
+JSON est utiliser pour transférer des informations entre votre navigateur et un serveur. 
+Les informations sont enregistrées dans des fichiers textes et peuvent être récupérées plsu tard. Car il s'agit tout simplement de texte. Cela signifie que vous ne pouvez pas stocker des données complexes comme une fonction. Mais vous pouvez stockeer des tableaux , des objets contenant des données simples, des chaînes de caractères et des nombres 
+JSON est en train de prendr la place du XML comme format de transfert de données. 
+De nombreuses nouvelles API Web sont écrites exclusivement pour utiliser du JSO.
+Vous utiliserez donc la technologie AJAX pour charger du JSON.
+
+#### Utilisation de JSON
+
+En JavaScript l'objet JSON est disponible dans à peu près tous les navigateurs modernes. Il existe des moyens de l'ajouter aux navigateurs qui ne l'ont pas.
+
+```JSON
+var jsonString = JSON.stringify ({
+    faire: "McLaren",
+    modèle: "MP4­12C",
+    miles: 5023
+});
+```
+
+JSON.stringify convertit un objet en une chaîne JSON. Dans cet exemple, jsonString devient : {"faire":"McLaren","modèle":"MP412C", "miles":5023}
+
+```JSON
+var car = JSON.parse(jsonString);
+```
+
+La chaîne de caractère JSON peut être reconvertie en un objet JavaScript. En utilisant JSON.parse qui est maintenant utilisable domme un objet JavaScript normal. Nous pouvons maintenant redéfinir ses propriétés :
+
+```javascript
+car.model = "P1";
+```
+
+#### Ressources
+
+http://www.generatedata.com/#t1
+https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array
+
+#### Array
+
+L'objet Array est utilisé pour créer des tableaux. Les tableaux sont des objets de haut-niveau (en terme de complexité homme-machine) semblables à des listes
+
+Syntaxe
+
+```javascript
+car.model = "P1";
+```
+
+

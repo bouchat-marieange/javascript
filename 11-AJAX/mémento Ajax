@@ -13,7 +13,7 @@ Les langages HTML et CSS sont également pris en compte pour l'affichage mais ce
 
 Le transfert de données est géré exclusivement par le JavaScript et utilise différentes technologies de formatage de données comme le XML oue le JSON.
 
-Application concrète
+## Application concrète
 
 Dans champ de recherche d'un site, l'usage de l'auto-complétion (qui permet d'afficher la liste des mots qui commencent par les lettres que vous avez déja tapé. Ce système requiert l'AJAX qui demande au serveur de chercher les mots correspondant à la recherche et ce sans recharger la page, car sinon les caractères entrés seraient perdus.
 
@@ -33,3 +33,137 @@ L'ajax étant un ensemble de technologies effectuant des transferts de données,
 * XML : acronyme de eXtensible Markup Language . Format de données proche du HTML. Il permet de stockere les données dans un language de balisage semblable au HTML. Très pratique pour stocker de nombreuses données ayant besoin d'être formatées et fournit moyen simple d'y accéder.
 
 * JSON : JavaScript Objet Notation . Le plus courant. Il a pour particularité de segmenter les données dans un objet JavaScript. Très avantageux pour les petits transfert de données segmentées et de plsu en plus utilisé dans de très nombreux langages.
+
+## Utilisation
+
+### HtML et format texte
+
+Ces 2 formats n'ont rien de particulier, on récupère leur contenu et on l'affiche là oàù il faut, ils ne nécessite aucun traitement.
+
+Exemple si on recoit le texte suivant
+
+
+'Je suis une alerte à afficher sur l'écran de l'utilisateur.'
+
+On affiche le texte simple à l'endroit approprié
+
+````html
+<p>Je suis un paragraphe <strong>inintéressant</strong> qui doit être copié quelque part dans le DOM.</p>
+````
+
+On copier ce code HTML là où il doit être car le texte est déja formaté et prêt à l'emploi.
+
+
+### Le XML
+
+Le XML est plus intéressant car il permet de structurer des données de la même manière qu'en HTML, mais avec des balises personnalisées. Il est donc possible de réduire fortement le poids du transfert grâce à l'utilisation de noms de balise courts. Par exemple voici un tableau en XML.
+
+````xml
+<?xml version="1.0" encoding="utf-8"?>
+<table>
+
+    <line>
+        <cel>Ligne 1 - Colonne 1</cel>
+        <cel>Ligne 1 - Colonne 2</cel>
+        <cel>Ligne 1 - Colonne 3</cel>
+    </line>
+
+    <line>
+        <cel>Ligne 2 - Colonne 1</cel>
+        <cel>Ligne 2 - Colonne 2</cel>
+        <cel>Ligne 2 - Colonne 3</cel>
+    </line>
+
+    <line>
+        <cel>Ligne 3 - Colonne 1</cel>
+        <cel>Ligne 3 - Colonne 2</cel>
+        <cel>Ligne 3 - Colonne 3</cel>
+    </line>
+
+</table>
+````
+
+Ce qui est très intéressant c'est que l'on peut avec la requête approprié, parcourir ce code WML avec les même méthodes que l'on utilise pour le DOM HTML (par exemple getElementByTagName())
+
+Suite à votre requête, votre code JavaScript var recevoir une chaîne de caractères contenant un code comme celui de ce tableau. A ce stade il n'est pas encore possible de parcourir ce code, car il ne s'agit encore que d'une chaîne de caractère. Une fois la requête terminée et toutes les données reçues, un parseur (ou analyseur syntaxique) va se mettre en route pour analyser le code reçu , le décomposer, et enfin le reconstituer sous forme d'arbre DOM qu'il sera possible de parcourir.
+
+On peut alors compter le nombre de cellules (les balises <cel>) qui existent et voir leur contenu grâce au méthodes habituelles utilisées avec le DOM HTML.
+
+
+### Le JSON
+
+Le JSON est le format le plus utilisé et le plus pratique pour nous. Comme l'indique son nom (JavaScript Object Notation), il s'agit d'une représentation des données sous forme d'objet JavaScript. Essayons, par exemple de représenter uen liste de membres ainsi que leurs informations:
+
+````json
+{
+
+    Membre1: {
+        posts: 6230,
+        inscription: '22/08/2003'
+    },
+
+    Membre2: {
+        posts: 200,
+        inscription: '04/06/2011'
+     }
+
+}
+````
+
+Tout comme pour le XML, on reçoit ce code sous forme de chaîne de caractères, cependant le parseur ne se déclenche par automatiquement pour ce format. Il faut utiliser l'objet nommé JSON, qui possède deux méthode bien pratiques:
+
+* parse() , prend en paramètre la chaîne de caractères à analyser et retourne le résulat sous forme d'objet JSON
+
+* stringify() , premet de faire l'inverse, elle prend en paramètre un objet JSON et retourne son équivalent sous forme de chaîne de caractères.
+
+Voici un exemple de ces deux méthodes
+
+````javascript
+var obj = {
+        index: 'contenu'
+    },
+    string;
+
+string = JSON.stringify(obj);
+
+alert(typeof string + ' : ' + string); // Affiche : « string : {"index":"contenu"} »
+
+obj = JSON.parse(string);
+
+alert(typeof obj + ' : ' + obj); // Affiche : « object : [object Object] »
+````
+
+Le JSON est très pratique pour recevoir des données mais aussi pour en envoyer , surtout depuis que le PHP5.2 permet le support des fonctions json_decode() et json_encode()
+
+
+## En résumé
+
+* L'AJAX est un moyen de charger des données sans recharger la page, en utilisant le JavaScript.
+
+* Dans une requête AJAX, les deux formats de données plébiscités sont le XML et le JSON. Mais les données au format texte sont permises.
+
+* Les données reçues au format XML ont l'avantage de pouvoir être traitées avec des méthodes DOM, comme getElementById(). Le désavantage est que le XML peut se révéler assez verbeux, ce qui alourdit la taille du fichier.
+
+* Les données reçues au format JSON ont l'avantage d'être très concises, mais ne sont pas toujours très lisibles pour un humain. Un autre avantage est que les données sont accessibles en tant qu'objets littéraux.
+
+
+## XMLHttpRequest
+
+Nous allons maintenant utiliser l'objet XMLHttpRequest. C'est la technique AJAX la plus courante.
+
+L'objet XMLHttpRequest a été initialement conçu par Microsoft et implémenté dans Internet Explorer et Outlook sous forme d'un contrôle ActiveX. A l'origine il s'appellait XMLHTTP. Il a ensuite été repris par de nombreux navigateurs sous le nom XMLHttpRequest.
+
+Le principe de cet objet est simple : une requête HTTP est envoyée à l'adresse spécifiée, une réponse est alors attendue en retour de la part du serveur. Une fois la réponse obtenue, la requête s'arrête et peut éventuellement être relancée.
+
+L'utilisation de l'objet XHR (abréviation courante de XMLHttpRequest) se fait en deux étapes bien distinctes:
+
+1. Préparation et envoi de la requête
+2. Réception des données.
+
+### Préparation et envoi de la requête
+
+
+
+
+
+

@@ -333,6 +333,109 @@ Si vous souhaitez tester votre requête XHR sur votre ordinateur sans même util
 
 Nous avons traité ici une requête asychrone mais pour une requête synchrone, il n'y a qu'à vérifier le statut de votre requête, tout simplement.
 
-### sTraitement des données
+### Traitement des données
+
+Une fois la requête terminée, il faut récupérer les données obtenues. Pour cela, deux possibilités
+1. **Données au format XML**, on utilise la propriété responseXML, qui permet de parcourir l'arbre DOM des données reçues.Response XML est particulièrecar elle contient un arbre DOM que l'on peut facilement parcourir. Par exemple si on reçoit l'arbre DOM suivant:
+
+````xml
+<?xml version="1.0" encoding="utf-8"?>
+<table>
+
+    <line>
+        <cel>Ligne 1 - Colonne 1</cel>
+        <cel>Ligne 1 - Colonne 2</cel>
+        <cel>Ligne 1 - Colonne 3</cel>
+    </line>
+
+    <line>
+        <cel>Ligne 2 - Colonne 1</cel>
+        <cel>Ligne 2 - Colonne 2</cel>
+        <cel>Ligne 2 - Colonne 3</cel>
+    </line>
+    
+    <line>
+        <cel>Ligne 3 - Colonne 1</cel>
+        <cel>Ligne 3 - Colonne 2</cel>
+        <cel>Ligne 3 - Colonne 3</cel>
+    </line>
+
+</table>
+````
+
+**Remarque**
+
+Une petite précision est nécessaire concernant l'utilisation de la propriété responseXML. Sur de vieux navigateurs (notamment avec de vieilles versions de Firefox), celle-ci peut ne pas être utilisable si le serveur n'a pas renvoyé une réponse avec un en-tête spécifiant qu'il s'agit bel et bien d'un fichier XML. La propriété pourrait alors être inutilisable, bien que le contenu soit pourtant un fichier XML. Pensez donc bien à spécifier l'en-tête Content-type avec la valeur text/xml pour éviter les mauvaises surprises. Le JavaScript reconnaîtra alors le type MIME XML. En PHP, cela se fait de la manière suivante :
+
+````php
+<?php header('Content-type: text/xml'); ?>
+````
+
+On peut récupérer toutes le balises <cel> de la manière suivante:
+
+````javascript
+var cels = xhr.responseXML.getElementsByTagName('cel');
+````
+
+2. **Données au format autre que XML**, on utilise la propriété responseText, qui fournit toutes les données sous forme d'une chaîne de caractères. On peut ensuite si on le souhaite faire des conversion, en objet JSON par exemple:
+
+````javascript
+var response = JSON.parse(xhr.responseText);
+````
+
+### Récupération des en-têtes de la réponse
+
+Il se peut que vous ayez parfois besoin de récupérer les valeurs des en-têtes fournis avec la réponse de votre requête. On peut pour cela utiliser 2 méthodes:
+
+1. **méthode geAllResponseHeader()** et retourne tous les en-têtes de la réponse en vrac. Voici ce que lcela peut donner
+
+````javascript
+Date: Sat, 17 Sep 2011 20:09:46 GMT
+Server: Apache
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 20
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Content-Type: text/html; charset=utf-8
+````
+2. **methode getResonseHeader()** permet la récupération d'un seul en-tête. Il suffit d'en spécifier le nom en paramètre et la méthode retournera sa valeur
+
+````javascript
+var xhr = new XMLHttpRequest();
+
+xhr.open('HEAD', 'http://mon_site_web.com/', false);
+xhr.send(null);
+
+alert(xhr.getResponseHeader('Content-type')); // Affiche : « text/html; charset=utf-8 »
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1456,8 +1456,140 @@ Attention : Ces méthodes génériques ne sont pas standard. Elles sont dépréc
 
 
 
+***************************************************************************************************
+Ajouter ici des notes complémentaires concernant AJAX et JSON
+***************************************************************************************************
 
 
+## Mouse-Event
 
+Dans le navigateur le code peut être exécuter selon des évènements.L'interaction en Javascript passe souvent par l'action de réagir à un évènement pour modifier le comportement du navigateur. On peut faire se produire des évènement à différents moments:
+* Lorsque la page se charge
+* Lorsque l'utilisateur interagit (clic, survol, fait des changements)
+* Lors de plein d'autres évènements
+
+Ces évènements peuvent également être déclencher manuellement.
+
+Pour réagir à un évènement on utilise une fonction appelée "callback".
+
+Une fonction "callback" est une fonction qui sera appelée par le navigateur lorsqu'un évènement se produit (par exemple lorsque l'on click sur un bouton, ou que l'on survol une zone de la page).
+
+````javascript
+ var handleClick = function (event) {
+    // Faire quelque chose!
+};
+
+var bouton = document.querySelector('#big­button');
+button.addEventListener ('click', handleClick);
+````
+
+1. On crée un variable dans laquelle on stocke notre fonction callback (ici on l'appelera handleClick qui signifier gérer le click). Cette fonction prend en paramètre (event) et entre les accolades de cette fonction, on mettra ce que le navigateur doit effectuer comme opération lorsque l'évènement se produit.
+2. On cible ensuite un élément dans la page sur lequel va s'appliquer cet évènement (un bouton à cliquer, un image ou une zone à survoler, etc... et on la stocke dans une variable grâce au selecteur utiliser dans le DOM.
+3. On applique sur l'élément de la page la méthode addEventListener qui prend 2 paramètres (le nom de l'évènement à surveiller, la fonction callback qui sera exécutée.
+
+Attention pour les versions antérieures à Internet Explorer 9, utiliser la méthode attachEvent à la place de addEventListener car cette dernière n'est pas supportée. Attention, attachEvent demande comme paramètre onclick et pas seulement click. IL faut procéder de la même manière pour les autres éléments. Grâce à la création de bibliothèques comme jQuery, il est maintenant possible de ne plus avoir à s'occuper de ces différentes notation pour la manière de surveiller (écouter) les évènements selon les navigateurs utilisés.
+
+````javascript
+button.attachEvent("onclick", handleClick);
+````
+
+Les données concernant l'évènement sont transmis à la fonction callback qui prend comme argument event. event est un objet dont les propriétés décrivent ce qui s'est passé. 
+
+Dans l'exemple ci dessous, voici ce que l'on pourrait voir dans un callback de l'évènement click.
+On y retrouve de nombreuses propriétés qui donne une idée de l'endroit où l'évènement s'est produit sur la page (exemple: pageX et offsetY) . Ces points dépendent du point de référence utilisé pour mesurer. On peut également voir la cible qui est référence au noeud qui a été cliqué (dans l'exemple, il s'agit d'un titre de niveau H2)
+
+````javascript
+{
+    offsetX: 74,
+    offsetY: 10,
+    pageX: 154,
+    pageY: 576,
+    screenX: 154,
+    screenY: 489,
+    target: H2,
+    timeStamp: 1363131952985,
+    type: "click",
+    x: 154,
+    y: 395 
+}
+````
+
+### Les évènements de la souris
+
+* click : L'événement se produit lorsque l'utilisateur clique sur un élément
+* contextmenu : L'événement se produit lorsque l'utilisateur clique avec le bouton droit sur un élément pour ouvrir un menu contextuel
+* dblclick : L'événement se produit lorsque l'utilisateur double-clique sur un élément
+* mousedown : L'événement se produit lorsque l'utilisateur appuie sur un bouton de la souris sur un élément
+* mouseenter : L'événement se produit lorsque le pointeur est déplacé sur un élément
+* mouseleave : L'événement se produit lorsque le pointeur est déplacé hors d'un élément
+* mousemove : L'événement se produit lorsque le pointeur se déplace lorsqu'il est sur un élément
+* mouseover : L'événement se produit lorsque le pointeur est déplacé sur un élément ou sur l'un de ses enfants
+* mouseout : L'événement se produit lorsqu'un utilisateur déplace le pointeur de la souris hors d'un élément ou sur l'un de ses enfants
+* mouseup : L'événement se produit lorsqu'un utilisateur relâche un bouton de la souris sur un élément
+
+
+### Timing
+
+
+**setInterval(abc, tmp)**
+Appelle une fonction de manière répétée, avec un certain délai fixé entre chaque appel.
+
+La fonction setInterval() est habituellement utilisée pour définir un délai pour les fonctions qui sont exécutées indéfiniment, comme les animations.
+
+````javascript
+intervalID = window.setInterval(fonction,delai[,param1,param2, ...]);
+intervalID = window.setInterval(code,delai);
+````
+
+intervalID : est un ID unique d'intervalle qui peut être passé à window.clearInterval()
+
+fonction : est la fonction qui doit être appelée de manière répétée.
+
+code:  dans la syntaxe alternative, est une chaîne représentant le code à exécuter de manière répétée.
+
+delai : est le nombre de millisecondes (millièmes de seconde) que setInterval() doit attendre avant chaque appel de fonction.
+
+Notez que le passage de paramètres supplémentaires à la fonction dans la première syntaxe ne fonctionne pas dans Internet Explorer.
+
+**setTimeout(abc, tmp)**
+
+Si vous désirez que votre fonction ne soit appelée qu'une seule fois après le délai spécifié, utilisez window.setTimeout().Exécute un morceau de code ou une fonction après un délai determiné.
+
+````javascript
+intervalID = window.setInterval(fonction,delai[,param1,param2, ...]);
+timeoutID = window.setTimeout(code, delai);
+````
+timeoutID : est l'identificateur numerique du timeout, qui peut être utilisé avec window.clearTimeout.
+
+fnct : est la fonction que vous désirez exécuter après delai millisecondes.
+
+code : est, dans la syntaxe alternative, une chaîne contenant le code à exécuter après delai millisecondes. (L'utilisation de cette syntaxe n'est pas recommandée pour les mêmes raisons que l'utilisation d'eval()).
+
+delai :  est le nombre de millisecondes (millièmes de seconde) après lequel la fonction doit être appelée. Le délai réel peut s'avérer plus long (cf. doc en anglais).
+
+Notez que le passage de paramètres supplémentaires à la fonction dans la première syntaxe ne fonctionne pas dans Internet Explorer < 9.
+
+**clearInterval(fn);**
+
+La répétition peut être arrêtée à l'aide de window.clearInterval().Cette méthode supprime un délai qui était défini pour une fonction spécifique.
+
+**clearTimeout(fn);**
+
+La methode clearTimeout() efface le minuteur mis en place avec la methode setTimeout()
+La valeur de l'ID retournée par setTimeout() est utilisée comme paramètre de la méthode clearTimeout() 
+Pour faire fonctionner la méthode clearTimeout(), il faut utiliser des variable globale lorque l'on crée la methode timeout. 
+
+````javascript
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(function(){ alert("Hello"); }, 3000);
+}
+
+function myStopFunction() {
+    clearTimeout(myVar);
+}
+````
+Dans ce code, on à créer deux fonction que l'on pourra appliqué à des 2 boutons distincts en html. Le premier bouton auquel on attribuera la première fonction, affichera Hello au bout de 3 secondes (3000 millisecondes), le second bouton auquel on attribuera la seconde fonction, permettra d'interrompre l'exécution de la première fonction et d'empêcher l'affichage de Hello lorsqu'il sera cliqué entre le click sur le premier bouton et l'affichage du message.
 
 

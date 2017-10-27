@@ -6,11 +6,15 @@
   opacity: 1;
   transition: opacity 0.5s;
 }
+
+
+
+
+
 .hide {
   opacity: 0;
+  transition: opacity 0.5s;
 }
-
-
 
 .hoverMe
 {
@@ -18,4 +22,26 @@
   width: 50%;
   height: 100px;
   margin-bottom: 10px;
+}
+
+#reset
+{
+  background-color: aqua;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 100px;
+  height:3em;
+  line-height : 3em; // on centre le texte verticalement dans la div comme pour un bouton en indiquant la même valeur pour la height et le line-height
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+#axe-x, #axe-y
+{
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }

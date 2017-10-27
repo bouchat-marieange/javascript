@@ -68,17 +68,31 @@ reset.addEventListener("click", reapparaitre);// On applique ensuite cela au bou
 //     x: 154,
 //     y: 395
 // }
+// innerText récupère ou change le contenu entre deux balises et affiche le texte récupéré en supprimant toutes les balises. Par exemple: <p>Bonjour</p> renverra Bonjour. Attention si on indique innerHTML = "Nouveau text", c'est ce nouveau texte qui sera affiché à la place du texte initial.
+// MouseEvent.clientX  : La coordonnée en X du pointeur de la souris dans les coordonnées locales (contenu du DOM).
+// MouseEvent.clientY  : La coordonnée en Y du pointeur de la souris dans les coordonnées locales ( contenu du DOM).
 
-var axe_x_element = document.getElementbyId("x-axis");// on crée une variable et on stocke à l'intérieur les données recueillies pour
-var axe_y_element = document.getElementbyId("y-axis");
+
+var axe_x_element = document.getElementById("axe-x");// on crée une variable et on stocke à l'intérieur les données recueillies pour
+var axe_y_element = document.getElementById("axe-y");
 
 console.log(axe_x_element);
 console.log(axe_y_element);
 
 var Coordonnées = function(event)
 {
-  axe_x_element.innerText = "Axe x : " + event.pageX;
-  axe_y_element.innerText = "Axe y : " + event.pageY;
+  // On va afficher dans le html dans les div vides axe-x et axe-y une petit texte "Axe x : " ou "Axe y : " suivi des valeurs de coordonnées de la souris récoltée grâce à ClientX et ClientY
+  axe_x_element.innerText = "Axe x : " + event.clientX; // MouseEvent.clientY et MouseEvent.clientX sont des propriété qui renvoie respectivement la coordonnée verticale (y) et la coordonnée horizontale(x) dans la zone client de l'application à laquelle l'événement s'est produit (par opposition aux coordonnées dans la page).
+  axe_y_element.innerText = "Axe y : " + event.clientY; //  Si vous cliquez dans le coin supérieur gauche de la zone client, un événement de souris avec une valeur clientY de 0 se produit toujours, que la page soit défilée verticalement ou non.
 }
 
-window.addEventListener("mousemove", displayCooDinates);// L'élément à surveiller ici c'est toute la fenêtre donc window.addEventListener, quand il se produit l'évènement déplacement souris (mousemove), alors on lance la fonction coordonnées qui affiche les coordonnées x et y de la souris (sa positiion dans la page selon l'axe des x et des y)
+// Alternative avec la récupération et affichage des valeurs correspondant à pageX et pageY dans l'objet récupérer avec innertext
+
+// var Coordonnées = function(event)
+// {
+//   // On va afficher dans le html dans les div vides axe-x et axe-y une petit texte "Axe x : " ou "Axe y : " suivi des valeurs de coordonnées de la souris récoltée grâce à ClientX et ClientY
+//   axe_x_element.innerText = "Axe x : " + event.pageX; // .pageX renvoie la valeur correspondant à la propriété pageX de l'objet ciblé (voir explications plus haut)
+//   axe_y_element.innerText = "Axe y : " + event.pageY; // .pageY renvoie la valeur correspondant à la propriété pageY dee l'objet ciblé (voir explications plus haut)
+// }
+
+window.addEventListener("mousemove", Coordonnées);// L'élément cible (à surveiller) c'est toute la fenêtre donc window.addEventListener,(window représente un objet global c'est à dire accessible de partout dans le code et qui n'a pas dû être défini préalablement) quand il se produit l'évènement déplacement souris (mousemove), alors on lance la fonction coordonnées qui affiche les coordonnées x et y de la souris (sa positiion dans la page selon l'axe des x et des y)

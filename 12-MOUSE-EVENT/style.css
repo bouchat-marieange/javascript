@@ -1,0 +1,21 @@
+.square-red {
+  width: 100px;
+  height: 100px;
+  background: red;
+  margin: 20px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.hide {
+  opacity: 0;
+}
+
+
+
+.hoverMe
+{
+  background-color: blue;
+  width: 50%;
+  height: 100px;
+  margin-bottom: 10px;
+}

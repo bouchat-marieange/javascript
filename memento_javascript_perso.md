@@ -1593,3 +1593,21 @@ function myStopFunction() {
 Dans ce code, on à créer deux fonction que l'on pourra appliqué à des 2 boutons distincts en html. Le premier bouton auquel on attribuera la première fonction, affichera Hello au bout de 3 secondes (3000 millisecondes), le second bouton auquel on attribuera la seconde fonction, permettra d'interrompre l'exécution de la première fonction et d'empêcher l'affichage de Hello lorsqu'il sera cliqué entre le click sur le premier bouton et l'affichage du message.
 
 
+
+##  KeyboardEvent (Les évènements liés au clavier)
+
+Les objets KeyboardEvent décrivent l'interaction d'un utilisateur avec le clavier. Chaque événement décrit une clé; le type d'événement (keydown, keypress ou keyup) identifie le type d'activité effectué.
+
+**keydown :** Lorsque la touche est enfoncée, l'événement keydown est envoyé.
+**keypress :** Si la touche n'est pas une touche de modification, l'événement keypress est envoyé.
+**keyup :** Lorsque l'utilisateur relâche la touche, l'événement keyup est envoyé.
+
+````javascript
+ var handleKey = function (event) {
+    // Faire quelque chose!
+};
+
+window.addEventListener ('keydown', handleKey);
+````
+
+

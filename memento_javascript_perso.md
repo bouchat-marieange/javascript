@@ -1598,11 +1598,11 @@ Dans ce code, on à créer deux fonction que l'on pourra appliqué à des 2 bout
 
 Les objets KeyboardEvent décrivent l'interaction d'un utilisateur avec le clavier. Chaque événement décrit une clé; le type d'événement (keydown, keypress ou keyup) identifie le type d'activité effectué.
 
-**keydown :** Lorsque la touche est enfoncée, l'événement keydown est envoyé.
+**keydown :** Appuyer (sans relâcher) sur une touche de clavier sur l'élément. Lorsque la touche est enfoncée, l'événement keydown est envoyé.
 
-**keypress :** Si la touche n'est pas une touche de modification, l'événement keypress est envoyé.
+**keypress :** Frapper (appuyer puis relâcher) une touche de clavier sur l'élément. Si la touche n'est pas une touche de modification, l'événement keypress est envoyé.
 
-**keyup :** Lorsque l'utilisateur relâche la touche, l'événement keyup est envoyé.
+**keyup :** Relâcher une touche de clavier sur l'élément.Lorsque l'utilisateur relâche la touche, l'événement keyup est envoyé.
 
 ````javascript
  var handleKey = function (event) {

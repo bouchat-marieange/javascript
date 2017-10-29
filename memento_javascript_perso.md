@@ -1612,4 +1612,16 @@ Les objets KeyboardEvent décrivent l'interaction d'un utilisateur avec le clavi
 window.addEventListener ('keydown', handleKey);
 ````
 
+Pour définir les touches utilisées, on peut utiliser la notation Gecko 
+
+
+* "0", "5", ect.. pour les touches chiffres
+* "ArrowUp", "ArrowRight", etc.. pour les touches flêchées
+* "F6", "F5", ... pour les touches de fonction
+* "Alt", "Control", "Shift", ... pour ce type de touches
+* "A", "B", "C", ... pour les touches de lettres
+* et généralement le nom de la touches en anglais pour les autres touches "Clear", "Enter", "VolumeUp", etc...
+
+Pour la liste complète, consulter https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key
+
 
